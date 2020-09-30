@@ -1,7 +1,7 @@
 /**
  * Two dimensional point
  */
-class Pont
+class Point
 {
     constructor(x, y)
     {
@@ -37,6 +37,4 @@ class Pont
         let distance = Math.sqrt(dx * dx + dy * dy);
         return distance;
     }
-
-
 }

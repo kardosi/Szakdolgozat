@@ -1,6 +1,4 @@
-/**
- * Two dimensional point
- */
+
 class Point
 {
     constructor(x, y)

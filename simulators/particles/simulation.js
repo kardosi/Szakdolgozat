@@ -1,4 +1,4 @@
-class Szim
+class Simulation
 {
   random()
   {

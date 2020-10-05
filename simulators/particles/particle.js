@@ -1,5 +1,5 @@
 
-class Reszecske
+class Particle
 {
 
   get x()

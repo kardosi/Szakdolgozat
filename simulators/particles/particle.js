@@ -1,53 +1,36 @@
 
-class Particle
+class Particle extends Point
 {
-
-  get x()
+  constructor(x, y, radius)
   {
-      return this._x;
+    super(x, y);
+    this.radius = radius;
   }
 
-  get y()
+  get radius()
   {
-      return this._y;
+    return this.radius;
+  }
+
+  set radius(r)
+  {
+    this._radius = r;
   }
 
   draw()
   {
-    for(var i=0; i< pontokszama; i++) {
 
-
-      $('canvas').drawArc({
-      name: "kor"+db,
-      strokeStyle: 'black',
-      fillStyle: 'blue',
-      strokeWidth: 2,
-      x: pontokx[i], y: pontoky[i],
-      radius: 5
-      });
-
-      $('canvas').drawText({
-      strokeStyle: 'black',
-      strokeWidth: 1,
-      x: pontokx[i], y: pontoky[i]+15,
-      fontSize: 12,
-      fontFamily: 'Verdana, sans-serif',
-      text:pontokx[i]
-
-      });
-      $('canvas').drawText({
-      strokeStyle: 'black',
-      strokeWidth: 1,
-      x: pontokx[i], y: pontoky[i]+30,
-      fontSize: 12,
-      fontFamily: 'Verdana, sans-serif',
-      text:pontoky[i]
-
+    $('canvas').drawArc({
+    name: "kor"+db,
+    strokeStyle: 'black',
+    fillStyle: 'blue',
+    strokeWidth: 2,
+    x: this.x, y: this.y,
+    radius: this.radius
     });
-    db++;
-    }
   }
-  utozes()
+
+  /*utozes()
   {
     var ix=0;
     var iy=0;
@@ -85,5 +68,5 @@ class Particle
     {
       iy++;
     }
-  }
+  }*/
 }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script type ="text/javascript" src="jquery.js"></script>
+  <script type ="text/javascript" src="jcanvas.min.js"></script>
+</head>
+
+<script>
+
+  var canvas;
+  var context;
+
+
+
+  function drawByJquery(n, r)
+  {
+    for(i=0; i < n; i++){
+      $('canvas').drawArc({
+      strokeStyle: 'black',
+      fillStyle: 'blue',
+      strokeWidth: 2,
+      x: 100, y: 200,
+      radius: r
+      });
+    }
+
+  }
+  function drawByContext(n, r)
+  {
+    for (var i = 0; i < n; i++) {
+      context.fillStyle = 'blue';
+      context.strokeStyle = 'black';
+      context.lineWidth = 2;
+      context.beginPath();
+      context.arc(200, 100, r, 0, 2 * Math.PI);
+      context.fill();
+      context.stroke();
+    }
+
+  }
+
+  $(document).ready(function(){
+
+    canvas=$('#canvas');
+    context=$('#canvas')[0].getContext('2d');
+
+
+
+    for(var r = 0; r<300; r+=10)
+    {
+      var d1 = new Date();
+      var t1 = d1.getTime();
+      drawByJquery(3000, r);
+      var d2 = new Date();
+      var t2 = d2.getTime();
+      var jquerrytime = t2-t1;
+      console.log("jQuery " + r + " -> " + t);
+
+      var d1 = new Date();
+      var t1 = d1.getTime();
+      drawByContext(3000, r);
+      var d2 = new Date();
+      var t2 = d2.getTime();
+      var contexttime = t2-t1;
+      console.log("Context " + r + " -> " + t);
+    }
+
+
+
+
+  });
+
+</script>
+
+<body>
+  <canvas class="canvas" id="canvas" width="1024" height="565" ></canvas>
+</body>
+
+</html>

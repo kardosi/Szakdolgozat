@@ -1,3 +1,6 @@
+
+
+
 class Simulator
 {
   constructor()
@@ -5,17 +8,47 @@ class Simulator
     this._particles = this.createParticles(20);
   }
 
-  createParticles(nParticles)
-  {
-    let particles = [];
-    for(var i=0; i<nParticles; i++)
+
+/*
+    resize(width, height)
     {
-      let x = Math.floor(Math.random() * 1005)+10;
-      let y = Math.floor(Math.random() * 545)+10;
-      let particle = new Particle(x, y, 5);
-      particles.push(particle);
+        this._width = width;
+        this._height = height;
+        this.updatePanels(width, height);
+        this.draw(this._context);
+    }
+
+    updatePanels(width, height)
+    {
 
     }
-    return particles;
-  }
+
+
+    draw()
+    {
+        this._context.clearRect(0, 0, this._width, this._height);
+        this.drawPanels(this._context);
+    }*/
+
+
+    createParticles(nParticles)
+    {
+      let particles = [];
+      for(var i=0; i<nParticles; i++)
+      {
+        let x = Math.floor(Math.random() * 1005)+10;
+        let y = Math.floor(Math.random() * 545)+10;
+        let particle = new Particle(x, y, 5);
+        particles.push(particle);
+
+      }
+      return particles;
+    }
+    draw()
+    {
+      for (let particle of this._particles) {
+        particle.draw();
+      }
+
+    }
 }

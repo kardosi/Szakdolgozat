@@ -9,7 +9,7 @@ class Particle extends Point
 
   get radius()
   {
-    return this.radius;
+    return this._radius;
   }
 
   set radius(r)
@@ -21,7 +21,6 @@ class Particle extends Point
   {
 
     $('canvas').drawArc({
-    name: "kor"+db,
     strokeStyle: 'black',
     fillStyle: 'blue',
     strokeWidth: 2,
@@ -30,7 +29,7 @@ class Particle extends Point
     });
   }
 
-  /*utozes()
+  /*utkozes()
   {
     var ix=0;
     var iy=0;

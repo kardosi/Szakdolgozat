@@ -20,13 +20,13 @@ class Particle extends Point
   draw()
   {
 
-    $('canvas').drawArc({
-    strokeStyle: 'black',
-    fillStyle: 'blue',
-    strokeWidth: 2,
-    x: this.x, y: this.y,
-    radius: this.radius
-    });
+    context.fillStyle = 'blue';
+    context.strokeStyle = 'black';
+    context.lineWidth = 2;
+    context.beginPath();
+    context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+    context.fill();
+    context.stroke();
   }
 
   /*utkozes()

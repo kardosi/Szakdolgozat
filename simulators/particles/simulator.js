@@ -16,19 +16,15 @@ class Simulator
         this._height = height;
         this.updatePanels(width, height);
         this.draw(this._context);
-    }
+    }*/
 
     updatePanels(width, height)
     {
-
+      
     }
 
 
-    draw()
-    {
-        this._context.clearRect(0, 0, this._width, this._height);
-        this.drawPanels(this._context);
-    }*/
+
 
 
     createParticles(nParticles)
@@ -50,5 +46,15 @@ class Simulator
         particle.draw();
       }
 
+    }
+    collision()
+    {
+      for (let point of this._particles) {
+        let distance = point.distance(this._particles);
+        if(distance < 5)
+        {
+          console.log("ütközés");
+        }
+      }
     }
 }

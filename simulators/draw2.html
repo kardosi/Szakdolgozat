@@ -6,6 +6,7 @@
   <script type ="text/javascript" src="jcanvas.min.js"></script>
 </head>
 
+
 <script>
 
   var canvas;
@@ -55,7 +56,7 @@
       var d2 = new Date();
       var t2 = d2.getTime();
       var jquerrytime = t2-t1;
-      console.log("jQuery " + r + " -> " + t);
+
 
       var d1 = new Date();
       var t1 = d1.getTime();
@@ -63,7 +64,7 @@
       var d2 = new Date();
       var t2 = d2.getTime();
       var contexttime = t2-t1;
-      console.log("Context " + r + " -> " + t);
+      console.log("Time jquerry " + r + " -> " + jquerrytime + " Time context " + r + " -> " + contexttime);
     }
 
 

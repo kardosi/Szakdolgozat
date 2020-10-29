@@ -6,10 +6,13 @@
   <script type ="text/javascript" src="jcanvas.min.js"></script>
 </head>
 
+
+
 <script>
 
   var canvas;
   var context;
+
 
 
 
@@ -47,6 +50,7 @@
 
 
 
+
     for(var i = 0; i<30000; i+=1000)
     {
       var d1 = new Date();
@@ -54,18 +58,20 @@
       drawByJquery(i);
       var d2 = new Date();
       var t2 = d2.getTime();
-      var t = t2-t1;
-      console.log("jQuery " + i + " -> " + t);
+      var jquerrytime = t2-t1;
+
 
       var d1 = new Date();
       var t1 = d1.getTime();
       drawByContext(i);
       var d2 = new Date();
       var t2 = d2.getTime();
-      var t = t2-t1;
-      console.log("Context " + i + " -> " + t);
-      //drawByContext();
+      var contexttime = t2-t1;
+      console.log("Time jquerry " + i + " -> " + jquerrytime + " Time context " + i + " -> " + contexttime);
+
+
     }
+
 
 
 

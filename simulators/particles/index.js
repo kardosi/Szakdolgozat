@@ -1,25 +1,28 @@
-var canvas;
-var context;
+var canvas = null;
+var canvasPosition = null;
+var context = null;
 
 var simulator = null;
 
 
-$(document).ready(function(){
-
-
-  canvas=$('#canvas');
-  context=$('#canvas')[0].getContext('2d');
-
+function initialize(){
 
   simulator = new Simulator();
-  simulator.draw();
 
+  canvas = document.getElementById("canvas");
+  canvasPosition = canvas.getBoundingClientRect();
+  context = canvas.getContext("2d");
+
+
+
+  simulator.draw();
+  simulator.collision();
 
 
 
   //resize();
 
-});
+};
 
 
 /*function resize()

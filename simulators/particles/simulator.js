@@ -3,24 +3,19 @@
 
 class Simulator
 {
-  constructor()
-  {
-    this._particles = this.createParticles(20);
-  }
-
-
-/*
-    resize(width, height)
+    constructor()
     {
-        this._width = width;
-        this._height = height;
-        this.updatePanels(width, height);
-        this.draw(this._context);
-    }*/
+      this._particles = this.createParticles(20);
+    }
 
-    updatePanels(width, height)
+
+  
+
+    update()
     {
-      
+      context.clearRect(0,0, context.canvas.width,context.canvas.height);
+      this._particles = this.createParticles(20);
+
     }
 
 
@@ -32,8 +27,8 @@ class Simulator
       let particles = [];
       for(var i=0; i<nParticles; i++)
       {
-        let x = Math.floor(Math.random() * 1005)+10;
-        let y = Math.floor(Math.random() * 545)+10;
+        let x = Math.floor(Math.random() * 780)+10;
+        let y = Math.floor(Math.random() * 580)+10;
         let particle = new Particle(x, y, 5);
         particles.push(particle);
 

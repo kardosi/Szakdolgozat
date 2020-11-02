@@ -15,19 +15,15 @@ function initialize(){
 
 
 
-  simulator.draw();
-  simulator.collision();
+  setInterval(function()
+    {
+      simulator.update();
+      simulator.draw();
+      simulator.collision();
+
+    },(1000/24));
 
 
 
-  //resize();
 
 };
-
-
-/*function resize()
-{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    editor.resize(canvas.width, canvas.height);
-}*/

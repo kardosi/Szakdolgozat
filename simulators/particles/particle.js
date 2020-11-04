@@ -5,6 +5,7 @@ class Particle extends Point
     {
       super(x, y);
       this.radius = radius;
+      this.color = "blue";
     }
 
     get radius()
@@ -17,10 +18,20 @@ class Particle extends Point
       this._radius = r;
     }
 
+    get color()
+    {
+      return this._color;
+    }
+
+    set color(c)
+    {
+      this._color = c;
+    }
+
     draw()
     {
 
-      context.fillStyle = 'blue';
+      context.fillStyle = this.color;
       context.strokeStyle = 'black';
       context.lineWidth = 2;
       context.beginPath();

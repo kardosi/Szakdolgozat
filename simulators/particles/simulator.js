@@ -9,12 +9,17 @@ class Simulator
     }
 
 
-  
+
 
     update()
     {
       context.clearRect(0,0, context.canvas.width,context.canvas.height);
-      this._particles = this.createParticles(20);
+      for (var i = 0; i < this._particles.length; i++) {
+        let dx = Math.random() * 6-3;
+        let dy = Math.random() * 6-3;
+        this._particles[i].translate(dx, dy); 
+      }
+
 
     }
 
@@ -44,11 +49,14 @@ class Simulator
     }
     collision()
     {
-      for (let point of this._particles) {
-        let distance = point.distance(this._particles);
-        if(distance < 5)
-        {
-          console.log("ütközés");
+      for (var i = 0; i < this._particles.length; i++) {
+        for (var j = i+1; j < this._particles.length; j++) {
+          let distance = this._particles[i].distance(this._particles[j]);
+          if(distance < 5)
+          {
+            this._particles[i].color = "red";
+            this._particles[j].color = "red";
+          }
         }
       }
     }

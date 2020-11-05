@@ -4,6 +4,18 @@
 
 Végeselem módszerek (Finite Element Methods)
 
+\textbf{Végeselem}
+
+A végeselemes módszer (VEM) numerikus módszer parciális differenciálegyenletek közelítő megoldására. Jellemzően mérnökök használják, a gépészmérnöki és építőmérnöki feladatokkal szorosan összefüggő mechanikai (szilárdságtani és lengéstani) számítások elvégzésére, valamint a villamosmérnöki gyakorlatban mezőszimuláció során is ezt a módszert alkalmazzák.
+
+A végeselemes módszert alkalmazni lehet nemlineáris feladatok megoldására is, mint például nemlineáris anyagtulajdonságok, nagy deformációk kezelésére, szerkezeti stabilitási problémák megoldására (épületszerkezetek stabilitása, kihajlása, külső nyomásnak kitett tartályok horpadása). Használják a VEM programokat hővezetési problémák illetve kombinált hővezetési és szilárdsági problémák megoldására is. Itt a gátolt hőtágulás okozta hőfeszültségek megállapítás az elsődleges cél. Mágneses és elektrosztatikus problémák szintén jól kezelhetők a módszerrel. Újabban gyakran használják a vízépítésben szivárgási és talajmechanikai vizsgálatok elvégzésére is.
+
+A végeselemes módszer kézi számításokra alkalmatlan, mivel nagyon sok elemi műveletet kellene megoldani hozzá. A mai viszonylag kis teljesítményű személyi számítógépek is alkalmasak azonban, hogy egy sor gyakorlatilag fontos feladat megoldható legyen. A végeselemes módszer alkalmazásánál nemcsak a tulajdonképpeni matematikai feladat (egyenletrendszer megoldása, sajátérték-feladat) megoldása munkaigényes, hanem magának az adatoknak az előkészítése és az eredmények értékelhető alakba hozása is sok időt igényelne. Ezért a korszerű számítógépes programok részét képezi egy preprocesszor és egy posztprocesszor is. A gépalkatrész példa esetén a preprocesszor egy CAD programban elkészített rajzból vagy térbeli modellből kiindulva automatikusan vagy félautomatikusan generálja a végeselemes hálót és ugyancsak segít a terhelések felhasználóbarát megadásában is. A posztprocesszor pedig vagy felrajzolja a torzított léptékű deformált alakot (vagyis a deformációk értékét egy nagyobb számmal megszorozva jól láthatóvá teszi az alakváltozást) vagy szintvonalakkal vagy színezéssel bejelöli a különböző feszültségű tartományokat. Sok új CAD program már tartalmaz egyszerűbb végeselemes modult.
+
+https://hu.wikipedia.org/wiki/V%C3%A9geselemes_m%C3%B3dszer
+
+
+
 \Section{Részecske alapú megközelítés}
 
 Gömbszerű részecskék
@@ -11,6 +23,14 @@ Gömbszerű részecskék
 Egymással ütköznek
 
 Tapadhatnak egymáshoz valamilyen szinten
+
+\textbf{Részecske}
+
+A részecske alapú megközelítés lényege, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk kis részecskéket és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
+
+Minden részecskének van színe, mérete, ami az összesre nézve azonos. 
+
+A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak. A részecske osztályban  a részecskék tulajdonságai és kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálattal. 
 
 \Section{Cella alapú módszer}
 

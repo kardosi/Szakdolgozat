@@ -2,29 +2,18 @@
 
 \Section{Elterjedt szimulációs módszerek}
 
-Végeselem módszerek (Finite Element Methods)
 
 \textbf{Végeselem}
 
-A végeselemes módszer (VEM) numerikus módszer parciális differenciálegyenletek közelítő megoldására. Jellemzően mérnökök használják, a gépészmérnöki és építőmérnöki feladatokkal szorosan összefüggő mechanikai (szilárdságtani és lengéstani) számítások elvégzésére, valamint a villamosmérnöki gyakorlatban mezőszimuláció során is ezt a módszert alkalmazzák.
+A véges elem módszerekkel
+bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
+A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor a az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. A mágneses és elektrosztatikus problémákra is megfelelő a használata. Mostanában szivárgási és talajmechanikai vizsgálatokat is végeznek vele. Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon sok elemi műveletet kellene végezni. A kis teljesítményű személyi számítógépek azonban alkalmasak, hogy megoldható legyen egy sor gyakorlatilag fontos feladat. Nem csak a matematikai feladat megoldása munkaigényes, hanem maga az adatok előkészítése, és az eredmények értékelhető alakba hozása is. Ezért egy preprocesszor és egy posztprocesszor is a korszerű számítógépes programok részét képezik.   
 
-A végeselemes módszert alkalmazni lehet nemlineáris feladatok megoldására is, mint például nemlineáris anyagtulajdonságok, nagy deformációk kezelésére, szerkezeti stabilitási problémák megoldására (épületszerkezetek stabilitása, kihajlása, külső nyomásnak kitett tartályok horpadása). Használják a VEM programokat hővezetési problémák illetve kombinált hővezetési és szilárdsági problémák megoldására is. Itt a gátolt hőtágulás okozta hőfeszültségek megállapítás az elsődleges cél. Mágneses és elektrosztatikus problémák szintén jól kezelhetők a módszerrel. Újabban gyakran használják a vízépítésben szivárgási és talajmechanikai vizsgálatok elvégzésére is.
-
-A végeselemes módszer kézi számításokra alkalmatlan, mivel nagyon sok elemi műveletet kellene megoldani hozzá. A mai viszonylag kis teljesítményű személyi számítógépek is alkalmasak azonban, hogy egy sor gyakorlatilag fontos feladat megoldható legyen. A végeselemes módszer alkalmazásánál nemcsak a tulajdonképpeni matematikai feladat (egyenletrendszer megoldása, sajátérték-feladat) megoldása munkaigényes, hanem magának az adatoknak az előkészítése és az eredmények értékelhető alakba hozása is sok időt igényelne. Ezért a korszerű számítógépes programok részét képezi egy preprocesszor és egy posztprocesszor is. A gépalkatrész példa esetén a preprocesszor egy CAD programban elkészített rajzból vagy térbeli modellből kiindulva automatikusan vagy félautomatikusan generálja a végeselemes hálót és ugyancsak segít a terhelések felhasználóbarát megadásában is. A posztprocesszor pedig vagy felrajzolja a torzított léptékű deformált alakot (vagyis a deformációk értékét egy nagyobb számmal megszorozva jól láthatóvá teszi az alakváltozást) vagy szintvonalakkal vagy színezéssel bejelöli a különböző feszültségű tartományokat. Sok új CAD program már tartalmaz egyszerűbb végeselemes modult.
-
-https://hu.wikipedia.org/wiki/V%C3%A9geselemes_m%C3%B3dszer
 
 
 
 \Section{Részecske alapú megközelítés}
 
-Gömbszerű részecskék
-
-Egymással ütköznek
-
-Tapadhatnak egymáshoz valamilyen szinten
-
-\textbf{Részecske}
 
 A részecske alapú megközelítés lényege, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk kis részecskéket és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 

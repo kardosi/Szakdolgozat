@@ -13,11 +13,15 @@ class Simulator
 
     update()
     {
+      let gravity = 0.05;
+      let dy =0;
       context.clearRect(0,0, context.canvas.width,context.canvas.height);
       for (var i = 0; i < this._particles.length; i++) {
-        let dx = Math.random() * 6-3;
-        let dy = Math.random() * 6-3;
-        this._particles[i].translate(dx, dy); 
+        let dx = 0;//Math.random() * 6-3;
+        //let dy = Math.random() * 6-3;
+        dy += gravity;
+        this._particles[i].translate(dx, dy);
+
       }
 
 
@@ -57,6 +61,7 @@ class Simulator
             this._particles[i].color = "red";
             this._particles[j].color = "red";
           }
+
         }
       }
     }

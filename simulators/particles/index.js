@@ -19,7 +19,8 @@ function initialize(){
     {
       simulator.update();
       simulator.draw();
-      simulator.collision();
+      simulator.collisonWall();
+      simulator.collisionBall();
 
     },(1000/24));
 

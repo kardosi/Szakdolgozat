@@ -15,6 +15,14 @@ class Point
     {
         return this._y;
     }
+    set x(x)
+    {
+      this._x = x;
+    }
+    set y(y)
+    {
+      this._y = y;
+    }
 
     move(x, y)
     {

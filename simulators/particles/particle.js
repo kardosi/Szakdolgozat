@@ -1,11 +1,15 @@
 
 class Particle extends Point
 {
-    constructor(x, y, radius)
+    constructor(x, y, radius, e, mass)
     {
       super(x, y);
       this.radius = radius;
       this.color = "blue";
+      this.velocity = {x: 0, y: 0};
+      this.e = -e;
+      this.mass = mass;
+      this.area = (Math.PI * radius * radius) / 10000;
     }
 
     get radius()
@@ -35,48 +39,9 @@ class Particle extends Point
       context.strokeStyle = 'black';
       context.lineWidth = 2;
       context.beginPath();
-      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, 0.7,  10);
       context.fill();
       context.stroke();
     }
 
-    /*utkozes()
-    {
-      var ix=0;
-      var iy=0;
-      for (var j = 1; j < pontokszama; j++) {
-        if(pontokx[ix]<=(pontokx[j]+10) && pontokx[ix]>=(pontokx[j]-10))
-        {
-
-          if(pontoky[iy]<=(pontoky[j]+10) && pontoky[iy]>=(pontoky[j]-10))
-          {
-            console.log("ütközés x", pontokx[ix], pontokx[j]);
-          }
-          else console.log("nincs1", pontokx[ix], pontokx[j]);
-
-        }
-        else console.log("nincs2");
-      }
-      for (var j = 1; j < pontokszama; j++) {
-        if(pontoky[iy]<=(pontoky[j]+10) && pontoky[iy]>=(pontoky[j]-10))
-        {
-          if(pontokx[ix]<=(pontokx[j]+10) && pontokx[ix]>=(pontokx[j]-10))
-          {
-            console.log("ütközés y", pontoky[iy], pontoky[j]);
-          }
-          else console.log("nincs3", pontoky[iy], pontoky[j]);
-
-        }
-        else console.log("nincs4");
-      }
-
-      while(ix<pontokszama)
-      {
-        ix++;
-      }
-      while(iy<pontokszama)
-      {
-        iy++;
-      }
-    }*/
 }

@@ -18,8 +18,8 @@ class Simulator
       let dx = 0;
       let drag = 0.47;
       let density = 1.22;
-      let fps = 1/24;
-      let dt = fps * 1000;
+      var fps = 1/60;
+      var dt = fps * 1000;
       let ag = 9.81;
       let Cd = 0.47;
       let rho = 1.22;
@@ -27,34 +27,38 @@ class Simulator
 
 
 
-      context.clearRect(0,0, context.canvas.width,context.canvas.height);
+      context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
       for (var i = 0; i < this._particles.length; i++) {
         //let dx = Math.random() * 6-3;
         //let dy = Math.random() * 6-3;
         dy += gravity;
         this._particles[i].translate(dx, dy);
 
+        this._particles[i].velocity.x = this._particles[i].x-dx;
+		    this._particles[i].velocity.y = this._particles[i].y-dy;
+
+        /*console.log(this._particles[1].velocity.x);
+        console.log(this._particles[1].velocity.y);*/
 
 
-        /*let fx = -0.5 * drag * density * this._particles[i].area * this._particles[i].velocity.x * this._particles[i].velocity.x * (this._particles[i].velocity.x / Math.abs(this._particles[i].velocity.x));
-  			let fy = -0.5 * drag * density * this._particles[i].area * this._particles[i].velocity.y * this._particles[i].velocity.y * (this._particles[i].velocity.y / Math.abs(this._particles[i].velocity.y));
+        /*if(i == this._particles.length - 1){
+          let fx = -0.5 * drag * density * this._particles[i].area * this._particles[i].velocity.x * this._particles[i].velocity.x * (this._particles[i].velocity.x / Math.abs(this._particles[i].velocity.x));
+    			let fy = -0.5 * drag * density * this._particles[i].area * this._particles[i].velocity.y * this._particles[i].velocity.y * (this._particles[i].velocity.y / Math.abs(this._particles[i].velocity.y));
 
-  			fx = (isNaN(fx)? 0 : fx);
-  			fy = (isNaN(fy)? 0 : fy);
 
-  			//Calculating the accleration of the ball
-  			//F = ma or a = F/m
-  			let ax = fx / this._particles[i].mass;
-  			let ay = (ag * gravity) + (fy / this._particles[i].mass);
 
-  			//Calculating the ball velocity
-  			this._particles[i].velocity.x += ax * fps;
-  			this._particles[i].velocity.y += ay * fps;
+    			let ax = fx / this._particles[i].mass;
+    			let ay = (ag * gravity) + (fy / this._particles[i].mass);
 
-  			//Calculating the position of the ball
-  			this._particles[i].x += this._particles[i].velocity.x * fps * 100;
-  			this._particles[i].y += this._particles[i].velocity.y * fps * 100;*/
 
+    			this._particles[i].velocity.x += ax * fps;
+    			this._particles[i].velocity.y += ay * fps;
+
+
+    			this._particles[i].x += this._particles[i].velocity.x * fps * 100;
+    			this._particles[i].y += this._particles[i].velocity.y * fps * 100;
+        }*/
 
 
       }
@@ -87,28 +91,30 @@ class Simulator
     collisonWall()
     {
       for (var i = 0; i < this._particles.length; i++) {
-
-          if(this._particles[i].y  > canvas.height - this._particles[i].radius)
-          {
-            this._particles[i].velocity.y *= this._particles[i].e;
-            this._particles[i].y = canvas.height - this._particles[i].radius;
-          }
-          if(this._particles[i].y < this._particles[i].radius)
-          {
-            this._particles[i].velocity.y *= this._particles[i].e;
-            this._particles[i].y = this._particles[i].radius;
-          }
           if(this._particles[i].x > canvas.width - this._particles[i].radius)
           {
             this._particles[i].velocity.x *= this._particles[i].e;
             this._particles[i].x = canvas.width - this._particles[i].radius;
+          }
+          if(this._particles[i].y  > canvas.height - this._particles[i].radius)
+          {
+            this._particles[i].velocity.y *= this._particles[i].e;
+            this._particles[i].y = canvas.height - this._particles[i].radius;
           }
           if(this._particles[i].x < this._particles[i].radius)
           {
             this._particles[i].velocity.x *= this._particles[i].e;
             this._particles[i].x = this._particles[i].radius;
           }
+          if(this._particles[i].y < this._particles[i].radius)
+          {
+            this._particles[i].velocity.y *= this._particles[i].e;
+            this._particles[i].y = this._particles[i].radius;
+          }
+
+
       }
+
 
     }
     collisionBall()
@@ -129,13 +135,19 @@ class Simulator
                 this._particles[j].color = "red";*/
                 let nx = (this._particles[j].x -  this._particles[i].x) / distance;
                 let ny = (this._particles[j].y -  this._particles[i].y) / distance;
-                let colPointX = ((this._particles[i].x * this._particles[j].radius) + (this._particles[j].x * this._particles[i].radius)) / this._particles[i].radius + this._particles[j].radius;
-                let colPointY = ((this._particles[i].y * this._particles[j].radius) + (this._particles[j].y * this._particles[i].radius)) / this._particles[i].radius + this._particles[j].radius;
+                var p = 2 * (this._particles[i].velocity.x * nx + this._particles[i].velocity.y * ny - this._particles[j].velocity.x * nx - this._particles[j].velocity.y * ny) / (this._particles[i].mass + this._particles[j].mass);
+                let colPointX = ((this._particles[i].x * this._particles[j].radius) + (this._particles[j].x * this._particles[i].radius)) / (this._particles[i].radius + this._particles[j].radius);
+                let colPointY = ((this._particles[i].y * this._particles[j].radius) + (this._particles[j].y * this._particles[i].radius)) / (this._particles[i].radius + this._particles[j].radius);
 
                 this._particles[i].x = colPointX + this._particles[i].radius * (this._particles[i].x - this._particles[j].x) /distance;
                 this._particles[i].y = colPointY + this._particles[i].radius * (this._particles[i].y - this._particles[j].y) /distance;
                 this._particles[j].x = colPointX + this._particles[j].radius * (this._particles[j].x - this._particles[i].x) /distance;
                 this._particles[j].y = colPointY + this._particles[j].radius * (this._particles[j].y - this._particles[i].y) /distance;
+
+                this._particles[i].velocity.x -= p * this._particles[i].mass * nx;
+					      this._particles[i].velocity.y -= p * this._particles[i].mass * ny;
+					      this._particles[j].velocity.x += p * this._particles[j].mass * nx;
+					      this._particles[j].velocity.y += p * this._particles[j].mass * ny;
 
 
               }

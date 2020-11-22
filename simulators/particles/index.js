@@ -22,7 +22,7 @@ function initialize(){
       simulator.collisonWall();
       simulator.collisionBall();
 
-    },(1000/24));
+    },(1000/60));
 
 
 

@@ -4,36 +4,6 @@
 
   var pixels = null;
 
-  function calcMouseEvent(event)
-  {
-     return {
-       "x": event.clientX - canvasPosition.left,
-       "y": event.clientY - canvasPosition.top,
-       "button": event.button
-     };
-  }
-
-  function mouseDown(event)
-  {
-    const mouse = calcMouseEvent(event);
-  }
-
-  function mouseMove(event)
-  {
-    const mouse = calcMouseEvent(event);
-  }
-
-  function mouseUp(event)
-  {
-    const mouse = calcMouseEvent(event);
-  }
-
-  function mouseWheel(event)
-  {
-    const mouse = calcMouseEvent(event);
-    const delta = event.wheelDelta;
-    event.preventDefault();
-  }
 
   function initPixels()
   {
@@ -103,10 +73,6 @@
   {
     canvas = document.getElementById("canvas");
     canvasPosition = canvas.getBoundingClientRect();
-    canvas.addEventListener("mousedown", mouseDown, false);
-    canvas.addEventListener("mousemove", mouseMove, false);
-    canvas.addEventListener("mouseup", mouseUp, false);
-    canvas.addEventListener("mousewheel", mouseWheel, false);
     context = canvas.getContext("2d");
     initPixels();
     window.setInterval(timerEvent, 100);

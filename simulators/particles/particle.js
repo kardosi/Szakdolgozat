@@ -5,7 +5,7 @@ class Particle extends Point
     {
       super(x, y);
       this.radius = radius;
-      this.color = "blue";
+      this.color = "lightblue";
       this.velocity = {x: 0, y: 0};
       this.e = -e;
       this.mass = mass;
@@ -36,12 +36,9 @@ class Particle extends Point
     {
 
       context.fillStyle = this.color;
-      context.strokeStyle = 'black';
-      context.lineWidth = 2;
       context.beginPath();
-      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, 0.7,  10);
+      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
       context.fill();
-      context.stroke();
     }
 
 }

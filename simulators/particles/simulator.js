@@ -18,7 +18,7 @@ class Simulator
       let dx = 0;
       let drag = 0.47;
       let density = 1.22;
-      var fps = 1/60;
+      let fps = 1/60;
       let ag = 9.81;
 
 
@@ -130,7 +130,7 @@ class Simulator
               {
                 let nx = (this._particles[j].x -  this._particles[i].x) / distance;
                 let ny = (this._particles[j].y -  this._particles[i].y) / distance;
-                var p = 2 * (this._particles[i].velocity.x * nx + this._particles[i].velocity.y * ny - this._particles[j].velocity.x * nx - this._particles[j].velocity.y * ny) / (this._particles[i].mass + this._particles[j].mass);
+                let p = 2 * (this._particles[i].velocity.x * nx + this._particles[i].velocity.y * ny - this._particles[j].velocity.x * nx - this._particles[j].velocity.y * ny) / (this._particles[i].mass + this._particles[j].mass);
                 let colPointX = ((this._particles[i].x * this._particles[j].radius) + (this._particles[j].x * this._particles[i].radius)) / (this._particles[i].radius + this._particles[j].radius);
                 let colPointY = ((this._particles[i].y * this._particles[j].radius) + (this._particles[j].y * this._particles[i].radius)) / (this._particles[i].radius + this._particles[j].radius);
 

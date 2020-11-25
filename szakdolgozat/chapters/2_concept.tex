@@ -7,7 +7,17 @@
 
 A véges elem módszerekkel
 bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
-A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor a az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. A mágneses és elektrosztatikus problémákra is megfelelő a használata. Mostanában szivárgási és talajmechanikai vizsgálatokat is végeznek vele. Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon sok elemi műveletet kellene végezni. A kis teljesítményű személyi számítógépek azonban alkalmasak, hogy megoldható legyen egy sor gyakorlatilag fontos feladat. Nem csak a matematikai feladat megoldása munkaigényes, hanem maga az adatok előkészítése, és az eredmények értékelhető alakba hozása is. Ezért egy preprocesszor és egy posztprocesszor is a korszerű számítógépes programok részét képezik.   
+
+
+A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor a az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
+
+
+A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. 
+
+
+A mágneses és elektrosztatikus problémákra is megfelelő a használata. Mostanában szivárgási és talajmechanikai vizsgálatokat is végeznek vele. 
+
+Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon sok elemi műveletet kellene végezni. A kis teljesítményű személyi számítógépek azonban alkalmasak, hogy megoldható legyen egy sor gyakorlatilag fontos feladat. Nem csak a matematikai feladat megoldása munkaigényes, hanem maga az adatok előkészítése, és az eredmények értékelhető alakba hozása is. Ezért egy preprocesszor és egy posztprocesszor is a korszerű számítógépes programok részét képezik.   
 
 
 
@@ -15,11 +25,11 @@ A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a mód
 \Section{Részecske alapú megközelítés}
 
 
-A részecske alapú megközelítés lényege, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk kis részecskéket és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
+A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk kis részecskéket és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 
-Minden részecskének van színe, mérete, ami az összesre nézve azonos. 
+Minden részecskének van színe, mérete,súlya ami az összesre nézve azonos. 
 
-A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak. A részecske osztályban  a részecskék tulajdonságai és kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálattal. 
+A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, súly, és szín) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a labdák közöttire. 
 
 \Section{Cella alapú módszer}
 

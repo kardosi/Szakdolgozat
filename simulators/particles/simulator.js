@@ -5,7 +5,7 @@ class Simulator
 {
     constructor()
     {
-      this._particles = this.createParticles(100);
+      this._particles = this.createParticles(500);
     }
 
 
@@ -23,16 +23,14 @@ class Simulator
 
 
 
-
-
       context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
       for (var i = 0; i < this._particles.length; i++) {
         //let dx = Math.random() * 6-3; //brown
         //let dy = Math.random() * 6-3;
-        dy += gravity;
+        /*dy += gravity;
 
-        this._particles[i].translate(dx, dy);
+        this._particles[i].translate(dx, dy);*/
 
 
 
@@ -70,7 +68,7 @@ class Simulator
       {
         let x = Math.floor(Math.random() * 780)+10;
         let y = Math.floor(Math.random() * 580)+10;
-        let particle = new Particle(x, y, 10, 0.9, 10);
+        let particle = new Particle(x, y, 10, 0.7, 10);
         particles.push(particle);
 
       }
@@ -83,6 +81,32 @@ class Simulator
       }
 
     }
+    drawCup()
+    {
+      /*var x1 = x+mag;
+      var x2 = x1-szél;*/
+
+      context.beginPath();
+      context.moveTo(200, 200);
+      context.lineTo(200, 400);
+      context.lineTo(350, 400);
+      context.lineTo(350, 200);
+      context.stroke();
+      /*for (var i = 0; i < this._particles.length; i++) {
+        if(this._particles[i].x < 350 && this._particles[i].x > 200 && this._particles[i].y > 400){
+          this._particles[i].velocity.x *= this._particles[i].e;
+          this._particles[i].y = 400 - this._particles[i].radius;
+        }
+      }*/
+    }
+
+    /*number()
+    {
+      let x = prompt('Adja meg a kezdő x-et' , '0');
+      let y = prompt('Adja meg a kezdő y-t' , '0');
+      let mag = prompt('Adja meg a magasságot' , '0');
+      let szél = prompt('Adja meg a szélességet' , '0');
+    }*/
 
     collisonWall()
     {
@@ -108,11 +132,45 @@ class Simulator
             this._particles[i].y = this._particles[i].radius;
           }
 
+        }
+
 
       }
 
+    collisionCup(){
+      for (var i = 0; i < this._particles.length; i++) {
+        if(this._particles[i].x + this._particles[i].velocity.x > 200 + this._particles[i].radius &&
+          this._particles[i].x + this._particles[i].velocity.x < 350 - this._particles[i].radius)
+        {
+          this._particles[i].velocity.x *= this._particles[i].e;
+          if(this._particles[i].x + this._particles[i].velocity.x > 200 + this._particles[i].radius){
+            this._particles[i].x = 200 + this._particles[i].radius;
+          }
+          if(this._particles[i].x + this._particles[i].velocity.x < 350 - this._particles[i].radius){
+            this._particles[i].x = 350 - this._particles[i].radius;
+          }
+
+        }
+        if(this._particles[i].y + this._particles[i].velocity.y < 400 - this._particles[i].radius)
+        {
+          this._particles[i].velocity.y *= this._particles[i].e;
+          this._particles[i].y = 400 - this._particles[i].radius;
+        }
+        if(this._particles[i].x + this._particles[i].velocity.x < this._particles[i].radius)
+        {
+          this._particles[i].velocity.x *= this._particles[i].e;
+          this._particles[i].x = this._particles[i].radius;
+        }
+        if(this._particles[i].y + this._particles[i].velocity.y < this._particles[i].radius)
+        {
+          this._particles[i].velocity.y *= this._particles[i].e;
+          this._particles[i].y = this._particles[i].radius;
+        }
+      }
 
     }
+
+
     collisionBall()
     {
       for (var i = 0; i < this._particles.length; i++) {

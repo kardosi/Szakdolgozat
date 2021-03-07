@@ -43,3 +43,25 @@ $ _
 
 A kutatás jellegű témáknál ez a fejezet gyakorlatilag kimaradhat.
 Helyette inkább a fő vizsgálati módszerek, kutatási irányok kaphatnak külön-külön fejezeteket.
+
+
+\textbf{Részecske alapú}
+
+Nézzük részletesebben a részecske alapú program megvalósítását. Maga a program 3 osztályból, egy ezeket összefogó javascript-ből, és egy CSS-ből meg egy HTML-ből áll. 
+
+Maga a HTML és a CSS nem érdekesek annyira. A HTML-ben a szokásos HTML elemek vannak, vagyis itt kötjük össze magát a programot, az osztályokat, a CSS-t és a javascript-et. Itt adjuk, meg hogy mekkora legyen a canvas amire a programot megvalósítjuk. Annyi érdekessége van, hogy a body elemben van egy eseménykezelő ami az onload, és azt a célt szolgálja, hogy az adott esemény csak az oldal betöltődése és megjelenése után következzen be. 
+
+A CCS fájlban pedig a HTML-től is kevesebbet találunk. Egyedül a canvas-ra határozunk meg benne egy stílust, ami pedig nem más, mint hogy legyen egy 1 pixel vastagságú fekete határa/oldala.
+
+De térjünk át a program érdekesebb részeire. Először is a 3 osztályt nézzük sorban, amik a pont, részecske és a szimulátor. 
+
+A pont osztályban még semmi érdekességet nem találhatunk, van egy constructora, getter, setter, move, eltoló és távolság számító metódus. Az utóbbit 
++a szimulátor programban használjuk. Itt a constructor a pont x, y koordinátájára van, getter, setter pedig szinten az x, y -ra. Az eltoló metódus az x, y koordinátákhoz ad hozzá mindig egy értéket, ami a metódus hívásánál lehet átadni, hogy mennyi legyen. A távolság számító metódus pedig, ahogy a neve is mutatja távolságot számít 2 pont között.
+
+A részecske osztályban már több érdekességet találunk. Ez az osztály a pont leszármazottja. Neki is van construktora, getter-ek, setter-ek, és egy rajzoló metódus. Itt a construktor egy részecske tulajdonságait írja le, a koordinátáit, sugarát, színét, sebesség vektorát, a visszapattanás erejét, súlyát, és a területét. Getter, setter metódusai a sugárnak és a színnek vannak. A rajzoló metódus, pedig egyetlen részecskét rajzol ki. 
+
+A szimulátor osztály a legérdekesebb, itt találhatóak a program fő részei. Először itt is van constructor, ahol azt adhatjuk meg, hogy hány db részecske legyen a programban. Van egy frissítés, ahol maga azt adjuk meg, hogy frissítés alkalmával mi történjen. Töröljük a canvast, majd beállítjuk a részecskék sebességét, és elmozdulásának koordinátáit. Ez a következőképpen működik: kiszámítjuk az aerodinamikai erőket ezzel a képlettel $[-0.5 * Cd * A * v^2 * rho]$, megvizsgáljuk, hogy ez szám-e, kiszámítjuk a részecske gyorsulását, majd a sebességvektorát is beállítjuk, majd kiszámoljuk a részecske új pozícióját. Ebben az osztályban hozzuk létre a részecskéket is, random generálunk koordinátákat, majd ezeket eltároljuk egy tömbben. Itt is rajzoltatjuk ki őket. Majd jön a program lényei része, az ütközésvizsgálatok, ebből 2 van, egy a falakra, egy pedig a labdákra. A fallal való ütközést külön nézzük mind a 4 falra, majd minden esetben ütközés után átállítjuk a részecske sebességvektorát, illetve a pozícióját a megfelelő értékekre. A részecskék  közötti ütközés kicsit összetettebb, itt mindig 2 részecskét vizsgálunk. Először is megnézzük, hogy a két részecske koordinátája nem-e ugyanaz, ha nem, akkor megnézzük, hogy az egyik részecske koordinátája plusz a két sugár nagyobb-e, mint a másik részecske koordinátája, illetve fordítva is megnézzük, hogy kisebb-e a koordináta, mint a másik részecske koordinátája és a két sugár összegétől. Majd, ha ezek közül a feltételek közül az egyik teljesül, vagyis a két részecske túl közel van egymáshoz, akkor kiszámoljuk a távolságot, hogy milyen közel is vannak. Ha ez a távolság kisebb, mint a két sugár összege, akkor kiszámoljuk az ütközési pont koordinátáit, megszüntetjük, hogy a részecskék elfedjék egymást, majd frissítjük a sebességet az ütközés tükrében. A részecske osztály ezeket tartalmazná. 
+
+
+Most nézzük az ezeket összefogó javascript miket tartalmaz. Ez az egész egy funkció, ami mint már említettem a HTML-ben van meghívva egy eseménykezelővel. Ebben van benne a szimulátor létrehozása, a canvas beállítása, és egy funkció a frissítésre, ami 60 fps-el frissít, és meghívja a szimulátor metódusait, a frissítést, rajzolást és ütközésvizsgálatokat.  
+

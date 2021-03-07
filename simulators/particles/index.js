@@ -4,6 +4,9 @@ var context = null;
 
 var simulator = null;
 
+var cup = false;
+var line = false;
+
 
 function initialize(){
 
@@ -21,11 +24,25 @@ function initialize(){
       simulator.draw();
       simulator.collisionBall();
       simulator.collisonWall();
+      if(cup == true)
+      {
+        simulator.drawCup();
+      }
+
 
 
     },(1000/60));
 
 
 
+};
+function addCup(){
+  //simulator.number();
+  simulator.collisionCup();
+  simulator.drawCup();
+  cup = true;
 
+};
+function remoteCup(){
+  cup = false;
 };

@@ -12,11 +12,13 @@ var grid = null;
     canvasPosition = canvas.getBoundingClientRect();
     context = canvas.getContext("2d");
     grid.initPixels();
-    grid.drawPixels();
+
+
 
 
     setInterval(function()
       {
+        grid.drawPixels();
         grid.updatePixels();
 
 

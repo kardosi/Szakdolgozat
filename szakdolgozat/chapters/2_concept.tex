@@ -25,11 +25,11 @@ Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon s
 \Section{Részecske alapú megközelítés}
 
 
-A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk kis részecskéket és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
+A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk/megjelenítünk kis részecskéket, és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 
 Minden részecskének van színe, mérete,súlya ami az összesre nézve azonos. 
 
-A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, súly, és szín) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a labdák közöttire. 
+A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, súly, és szín) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire. 
 
 \Section{Cella alapú módszer}
 

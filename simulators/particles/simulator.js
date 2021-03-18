@@ -5,7 +5,7 @@ class Simulator
 {
     constructor()
     {
-      this._particles = this.createParticles(500);
+      this._particles = this.createParticles(100);
     }
 
 
@@ -138,37 +138,62 @@ class Simulator
       }
 
     collisionCup(){
-      for (var i = 0; i < this._particles.length; i++) {
-        if(this._particles[i].x + this._particles[i].velocity.x > 200 + this._particles[i].radius &&
-          this._particles[i].x + this._particles[i].velocity.x < 350 - this._particles[i].radius)
-        {
-          this._particles[i].velocity.x *= this._particles[i].e;
-          if(this._particles[i].x + this._particles[i].velocity.x > 200 + this._particles[i].radius){
-            this._particles[i].x = 200 + this._particles[i].radius;
+
+      var buffer = 0.1;
+
+      var distX1 = 200 - 200;
+      var distY1 = 200 - 400;
+      var len1 = Math.sqrt( (distX1*distX1) + (distY1*distY1) );
+      var distX2 = 200 - 350;
+      var distY2 = 400 - 400;
+      var len2 = Math.sqrt( (distX2*distX2) + (distY2*distY2) );
+      var distX3 = 350 - 350;
+      var distY3 = 200 - 400;
+      var len3 = Math.sqrt( (distX3*distX3) + (distY3*distY3) );
+
+        for (var i = 0; i < this._particles.length; i++){
+
+          var dx1 = this._particles[i].x - 200;
+          var dy1 = this._particles[i].y - 200;
+          var dx2 = this._particles[i].x - 200;
+          var dy2 = this._particles[i].y - 400;
+          var d1 = Math.sqrt((dx1*dx1) + (dy1*dy1));
+          var d2 = Math.sqrt((dx2*dx2) + (dy2*dy2));
+
+          var dx3 = this._particles[i].x - 200;
+          var dy3 = this._particles[i].y - 400;
+          var dx4 = this._particles[i].x - 350;
+          var dy4 = this._particles[i].y - 400;
+          var d3 = Math.sqrt((dx3*dx3) + (dy3*dy3));
+          var d4 = Math.sqrt((dx4*dx4) + (dy4*dy4));
+
+          var dx5 = this._particles[i].x - 350;
+          var dy5 = this._particles[i].y - 400;
+          var dx6 = this._particles[i].x - 350;
+          var dy6 = this._particles[i].y - 200;
+          var d5 = Math.sqrt((dx5*dx5) + (dy5*dy5));
+          var d6 = Math.sqrt((dx6*dx6) + (dy6*dy6));
+
+          if (d1+d2 >= len1-buffer && d1+d2 <= len1+buffer) {
+            this._particles[i].velocity.y *= this._particles[i].e;
+            this._particles[i].y = len1 - this._particles[i].radius;
           }
-          if(this._particles[i].x + this._particles[i].velocity.x < 350 - this._particles[i].radius){
-            this._particles[i].x = 350 - this._particles[i].radius;
+
+          if (d3+d4 >= len2-buffer && d3+d4 <= len2+buffer) {
+            this._particles[i].velocity.x *= this._particles[i].e;
+            this._particles[i].x = len2 - this._particles[i].radius;
+          }
+
+          if (d5+d6 >= len3-buffer && d5+d6 <= len3+buffer) {
+            this._particles[i].velocity.y *= this._particles[i].e;
+            this._particles[i].y = len3 - this._particles[i].radius;
           }
 
         }
-        if(this._particles[i].y + this._particles[i].velocity.y < 400 - this._particles[i].radius)
-        {
-          this._particles[i].velocity.y *= this._particles[i].e;
-          this._particles[i].y = 400 - this._particles[i].radius;
-        }
-        if(this._particles[i].x + this._particles[i].velocity.x < this._particles[i].radius)
-        {
-          this._particles[i].velocity.x *= this._particles[i].e;
-          this._particles[i].x = this._particles[i].radius;
-        }
-        if(this._particles[i].y + this._particles[i].velocity.y < this._particles[i].radius)
-        {
-          this._particles[i].velocity.y *= this._particles[i].e;
-          this._particles[i].y = this._particles[i].radius;
-        }
-      }
 
     }
+
+
 
 
     collisionBall()

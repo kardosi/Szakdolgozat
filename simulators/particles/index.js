@@ -27,6 +27,7 @@ function initialize(){
       if(cup == true)
       {
         simulator.drawCup();
+        simulator.collisionCup();
       }
 
 
@@ -38,8 +39,7 @@ function initialize(){
 };
 function addCup(){
   //simulator.number();
-  simulator.collisionCup();
-  simulator.drawCup();
+
   cup = true;
 
 };

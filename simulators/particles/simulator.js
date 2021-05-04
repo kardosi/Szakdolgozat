@@ -5,7 +5,7 @@ class Simulator
 {
     constructor()
     {
-      this._particles = this.createParticles(100);
+      this._particles = this.createParticles(500);
     }
 
 
@@ -13,6 +13,7 @@ class Simulator
 
     update()
     {
+
       let gravity = 0.05;
       let dy = 0;
       let dx = 0;
@@ -83,8 +84,7 @@ class Simulator
     }
     drawCup()
     {
-      /*var x1 = x+mag;
-      var x2 = x1-szél;*/
+
 
       context.beginPath();
       context.moveTo(200, 200);
@@ -92,21 +92,11 @@ class Simulator
       context.lineTo(350, 400);
       context.lineTo(350, 200);
       context.stroke();
-      /*for (var i = 0; i < this._particles.length; i++) {
-        if(this._particles[i].x < 350 && this._particles[i].x > 200 && this._particles[i].y > 400){
-          this._particles[i].velocity.x *= this._particles[i].e;
-          this._particles[i].y = 400 - this._particles[i].radius;
-        }
-      }*/
+
+
     }
 
-    /*number()
-    {
-      let x = prompt('Adja meg a kezdő x-et' , '0');
-      let y = prompt('Adja meg a kezdő y-t' , '0');
-      let mag = prompt('Adja meg a magasságot' , '0');
-      let szél = prompt('Adja meg a szélességet' , '0');
-    }*/
+
 
     collisonWall()
     {
@@ -137,61 +127,143 @@ class Simulator
 
       }
 
-    collisionCup(){
+    collisionCup()
+    {
 
-      var buffer = 0.1;
+      for (var i = 0; i < this._particles.length; i++) {
+        let x = this._particles[i].x + this._particles[i].velocity.x;
+        let y = this._particles[i].y + this._particles[i].velocity.y;
 
-      var distX1 = 200 - 200;
-      var distY1 = 200 - 400;
-      var len1 = Math.sqrt( (distX1*distX1) + (distY1*distY1) );
-      var distX2 = 200 - 350;
-      var distY2 = 400 - 400;
-      var len2 = Math.sqrt( (distX2*distX2) + (distY2*distY2) );
-      var distX3 = 350 - 350;
-      var distY3 = 200 - 400;
-      var len3 = Math.sqrt( (distX3*distX3) + (distY3*distY3) );
-
-        for (var i = 0; i < this._particles.length; i++){
-
-          var dx1 = this._particles[i].x - 200;
-          var dy1 = this._particles[i].y - 200;
-          var dx2 = this._particles[i].x - 200;
-          var dy2 = this._particles[i].y - 400;
-          var d1 = Math.sqrt((dx1*dx1) + (dy1*dy1));
-          var d2 = Math.sqrt((dx2*dx2) + (dy2*dy2));
-
-          var dx3 = this._particles[i].x - 200;
-          var dy3 = this._particles[i].y - 400;
-          var dx4 = this._particles[i].x - 350;
-          var dy4 = this._particles[i].y - 400;
-          var d3 = Math.sqrt((dx3*dx3) + (dy3*dy3));
-          var d4 = Math.sqrt((dx4*dx4) + (dy4*dy4));
-
-          var dx5 = this._particles[i].x - 350;
-          var dy5 = this._particles[i].y - 400;
-          var dx6 = this._particles[i].x - 350;
-          var dy6 = this._particles[i].y - 200;
-          var d5 = Math.sqrt((dx5*dx5) + (dy5*dy5));
-          var d6 = Math.sqrt((dx6*dx6) + (dy6*dy6));
-
-          if (d1+d2 >= len1-buffer && d1+d2 <= len1+buffer) {
-            this._particles[i].velocity.y *= this._particles[i].e;
-            this._particles[i].y = len1 - this._particles[i].radius;
-          }
-
-          if (d3+d4 >= len2-buffer && d3+d4 <= len2+buffer) {
+        let hit1 = this.lineCircle(200,200, 200,400, x,y,this._particles[i].radius);
+        let hit2 = this.lineCircle(200,400, 350,400, x,y,this._particles[i].radius);
+        let hit3 = this.lineCircle(350,400, 350,200, x,y,this._particles[i].radius);
+        if (hit1)
+        {
+          if(x<=200){
             this._particles[i].velocity.x *= this._particles[i].e;
-            this._particles[i].x = len2 - this._particles[i].radius;
+            this._particles[i].x = 200 - this._particles[i].radius;
+          }
+          else{
+            this._particles[i].velocity.x *= this._particles[i].e;
+            this._particles[i].x = 200 + this._particles[i].radius;
           }
 
-          if (d5+d6 >= len3-buffer && d5+d6 <= len3+buffer) {
+
+        }
+        if (hit2)
+        {
+          if(y>=400){
             this._particles[i].velocity.y *= this._particles[i].e;
-            this._particles[i].y = len3 - this._particles[i].radius;
+            this._particles[i].y = 400 + this._particles[i].radius;
+          }
+          else{
+            this._particles[i].velocity.y *= this._particles[i].e;
+            this._particles[i].y = 400 - this._particles[i].radius;
           }
 
         }
+        if (hit3)
+        {
+          if(x>=350){
+            this._particles[i].velocity.x *= this._particles[i].e;
+            this._particles[i].x = 350 + this._particles[i].radius;
+          }
+          else{
+            this._particles[i].velocity.x *= this._particles[i].e;
+            this._particles[i].x = 350 - this._particles[i].radius;
+          }
+
+        }
+      }
 
     }
+
+    lineCircle(x1, y1, x2, y2, cx, cy, r){
+
+
+        // is either end INSIDE the circle?
+      // if so, return true immediately
+      let inside1 = this.pointCircle(x1,y1, cx,cy,r);
+      let inside2 = this.pointCircle(x2,y2, cx,cy,r);
+      if (inside1 || inside2) return true;
+
+      // get length of the line
+      let distX = x1 - x2;
+      let distY = y1 - y2;
+      let len = Math.sqrt( (distX*distX) + (distY*distY) );
+
+      // get dot product of the line and circle
+      let dot = ( ((cx-x1)*(x2-x1)) + ((cy-y1)*(y2-y1)) ) / Math.pow(len,2);
+
+      // find the closest point on the line
+      let closestX = x1 + (dot * (x2-x1));
+      let closestY = y1 + (dot * (y2-y1));
+
+      // is this point actually on the line segment?
+      // if so keep going, but if not, return false
+      let onSegment = this.linePoint(x1,y1,x2,y2, closestX,closestY);
+      if (!onSegment) return false;
+
+
+      // get distance to closest point
+      distX = closestX - cx;
+      distY = closestY - cy;
+      let distance = Math.sqrt( (distX*distX) + (distY*distY) );
+
+      if (distance <= r) {
+        return true;
+      }
+      return false;
+
+
+    }
+
+    pointCircle(px, py, cx, cy, r) {
+
+    // get distance between the point and circle's center
+    // using the Pythagorean Theorem
+
+    let distX = px - cx;
+    let distY = py - cy;
+    let distance = Math.sqrt( (distX*distX) + (distY*distY) );
+
+    // if the distance is less than the circle's
+    // radius the point is inside!
+    if (distance <= r) {
+      return true;
+    }
+    return false;
+  }
+
+  linePoint(x1, y1, x2, y2, px, py) {
+
+    // get distance from the point to the two ends of the line
+
+    let dx1 = px - x1;
+    let dy1 = py - y1;
+    let dx2 = px - x2;
+    let dy2 = py - y2;
+    let d1 = Math.sqrt((dx1*dx1) + (dy1*dy1));
+    let d2 = Math.sqrt((dx2*dx2) + (dy2*dy2));
+
+    // get the length of the line
+    let lx = x1 - x2;
+    let ly = y1 - y2;
+    let lineLen = Math.sqrt((lx*lx) + (ly*ly));
+
+    // since floats are so minutely accurate, add
+    // a little buffer zone that will give collision
+    let buffer = 0.1;    // higher # = less accurate
+
+    // if the two distances are equal to the line's
+    // length, the point is on the line!
+    // note we use the buffer here to give a range,
+    // rather than one #
+    if (d1+d2 >= lineLen-buffer && d1+d2 <= lineLen+buffer) {
+      return true;
+    }
+    return false;
+  }
 
 
 

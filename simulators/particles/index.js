@@ -38,8 +38,6 @@ function initialize(){
 
 };
 function addCup(){
-  //simulator.number();
-
   cup = true;
 
 };

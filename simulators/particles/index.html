@@ -13,9 +13,101 @@
 </head>
 <body onload="initialize()">
   <canvas class="canvas" id="canvas" width="800" height="600" ></canvas>
-  <button onclick="addCup()">Add Cup</button>
-  <button onclick="remoteCup()">Remote Cup</button>
-  
+  <table>
+    <tr>
+      <th>
+        <div>
+          <button onclick="addCup()">Add Cup</button>
+        </div>
+      </th>
+      <th>
+        <div>
+            <button onclick="remoteCup()">Remote Cup</button>
+        </div>
+      </th>
+    </tr>
+  </table>
+  <table>
+			<tr>
+				<th>
+					<div>
+						<h4>Density</h4>
+						<input type="range" id="density" min="0" step="0.01" max="1000" value="1.22"/>
+					</div>
+				</th>
+				<th>
+					<div>
+						<h4>Gravity</h4>
+						<input type="range" id="gravity" min="0" step="0.01" max="0.1" value="0.05"/>
+					</div>
+				</th>
+				<th>
+					<div>
+						<h4>Drag Coefficient</h4>
+						<input type="range" id="drag" min="0" step="0.01" max="1" value="0.47"/>
+					</div>
+				</th>
+        <th>
+					<div>
+						<h4>Mass</h4>
+						<input type="range" id="mass" min="1" step="9" max="1000" value="10"/>
+					</div>
+				</th>
+			</tr>
+		</table>
+
+    <table>
+      <tr>
+        <th>
+          <div>
+            <h4>X1</h4>
+            <input type="number" id="x1" min="0" max="790" value="180"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>Y1</h4>
+            <input type="number" id="y1" min="0" max="590" value="200"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>X2</h4>
+            <input type="number" id="x2" min="0" max="790" value="200"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>Y2</h4>
+            <input type="number" id="y2" min="10" max="600" value="400"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>X3</h4>
+            <input type="number" id="x3" min="10" max="800" value="350"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>Y3</h4>
+            <input type="number" id="y3" min="10" max="600" value="400"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>X4</h4>
+            <input type="number" id="x4" min="10" max="800" value="380"/>
+          </div>
+        </th>
+        <th>
+          <div>
+            <h4>Y4</h4>
+            <input type="number" id="y4" min="0" max="590" value="200"/>
+          </div>
+        </th>
+      </tr>
+    </table>
 
 
 

@@ -1,14 +1,13 @@
 
 class Particle extends Point
 {
-    constructor(x, y, radius, e, mass)
+    constructor(x, y, radius, e)
     {
       super(x, y);
       this.radius = radius;
       this.color = "lightblue";
       this.velocity = {x: 0, y: 0};
       this.e = -e;
-      this.mass = mass;
       this.area = (Math.PI * radius * radius) / 10000;
     }
 

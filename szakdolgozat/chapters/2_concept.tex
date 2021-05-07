@@ -2,7 +2,7 @@
 
 \Section{Elterjedt szimulációs módszerek}
 
-\textbf{A szimuláció alapja}
+\Section{A szimuláció alapja}
 
 Ha valamit szimulálunk az olyan, mintha utánoznánk. Azonban a szimulációs módszerek mást jelentenek, mert azokkal egy rendszer viselkedését próbáljuk meghatározni. A modell alkalmazásával képesek vagyunk létrehozni állapot sorozatokat, amelyek leírják az adott rendszert vagy néhány komponensének viselkedését. 
 
@@ -25,7 +25,7 @@ Ezek:
 	\item  ABS (ágens alapú)
 \end{itemize}
 
-\textbf{SD System Dynamics (rendszerdinamikai SD)}
+\Section{SD System Dynamics (rendszerdinamikai SD)}
 
 Az összetevők változását nézi az idő függvényében. Ezt a módszert döntéshozási szinten használják logisztikai rendszerekben. 
 
@@ -58,13 +58,13 @@ Alkotásakor először az egyes elemek között fennálló kapcsolatokat kell me
 
 
 
-\textbf{DES Discrete Event Simulation (Eseményvezérelt DES)}
+\Section{DES Discrete Event Simulation (Eseményvezérelt DES)}
 
 Ez a modell állapotváltozók és események hálózata, ahol diszkrét időközönként az állapotváltozók állapotot változtatnak.
 Az események bekövetkezésének időpontjai ezek a diszkrét időközök. Az események pedig pillanatnyi történések, amelyek megváltoztathatják a rendszer állapotát.
 Ez az állapotváltozás valamilyen változást idéz elő a rendszer erőforrásaiban. Ennek a változásnak a mértéke egységekben mérhető.
 
-\textbf{ABS (ágens alapú)}
+\Section{ABS (ágens alapú)}
 
 Ezek a szimulációs modellek legújabb csoportjába tartoznak. Azt az aktív szoftver modult nevezzük ágensnek, mely valamilyen beavatkozást végez a környezetéből beérkező információ hatására. 
 Most tekintsük át a logisztikai alkalmazását. 
@@ -72,13 +72,13 @@ Most tekintsük át a logisztikai alkalmazását.
 A strukturális változásoknak a modellezéséhez fejlesztették ki ezt a platformot. Az ágens alapú modell az ellátási láncban lévő virtuális vállalatok hatását szimulálja. Lényege, hogy egymástól eltérő ágenseket elhelyezünk, amelyek a virtuális vállalatokat reprezentálják. Ezeknek a vállalatoknak a tevékenységét szintén egy ágens szimulálja. Ezek különböző termékeket állítanak elő. Az összes ágens a saját termékei koncentrál, de közben egymásra is hatással vannak. Fontos, hogy ezek a logisztikai folyamatok a valóságban is ágensekből állnak, például csomagoló, targonca kezelő. 
 
 
-\textbf{Végeselem}
+\Section{Végeselem}
 
 A véges elem módszerekkel
 bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
 
 
-A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor a az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
+A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
 
 
 A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. 
@@ -96,7 +96,7 @@ Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon s
 
 A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk/megjelenítünk kis részecskéket, és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 
-Minden részecskének van x, y koordinátája, sugara, színe, mozgás vektora, visszapattanási együtthatója és mérete. 
+Minden részecskének van x, y koordinátája, sugara, színe, sebesség vektora, visszapattanási együtthatója és mérete. 
 
 A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, szín, mozgás vektor, méret és visszapattanási együttható) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire, illetve a programban van úgynevezett pohár, amihez szintén szükséges ütközésvizsgálat. A pohár kirajzolása is ebben a részben történik. 
 

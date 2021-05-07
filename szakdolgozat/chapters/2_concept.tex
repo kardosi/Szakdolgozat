@@ -2,6 +2,75 @@
 
 \Section{Elterjedt szimulációs módszerek}
 
+\textbf{A szimuláció alapja}
+
+Ha valamit szimulálunk az olyan, mintha utánoznánk. Azonban a szimulációs módszerek mást jelentenek, mert azokkal egy rendszer viselkedését próbáljuk meghatározni. A modell alkalmazásával képesek vagyunk létrehozni állapot sorozatokat, amelyek leírják az adott rendszert vagy néhány komponensének viselkedését. 
+
+A szimulációnak a használata ott javasolt, ahol
+
+\begin{itemize}
+	\item nincsennek analitikus módszerek vagy használatuk körülmények
+	\item veszélyes és hosszadalmas lenne a valóságban tesztelés
+	\item termeléskiesés miatt nem engedélyezett a valóságban tesztelni
+	\item a kimenő eredmény nem észlelhető
+\end{itemize}
+
+Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívűl, még használják pénzügyi, jármű és dinamikai modelleknél. 
+Működés alapján 3 fajta modellt különböztetünk meg.
+Ezek:
+
+\begin{itemize}
+	\item SD System Dynamics (rendszerdinamikai SD)
+	\item  DES Discrete Event Simulation (Eseményvezérelt DES)
+	\item  ABS (ágens alapú)
+\end{itemize}
+
+\textbf{SD System Dynamics (rendszerdinamikai SD)}
+
+Az összetevők változását nézi az idő függvényében. Ezt a módszert döntéshozási szinten használják logisztikai rendszerekben. 
+
+Jellemzői:
+
+\begin{itemize}
+	\item minimális az adatszükséglet
+	\item  struktúrára és stratégiára koncentrál
+	\item  holisztikus megközelítés, alrendszerekkel integrálva
+	\item biztosítja a vállalati stratégia rendszerbe épülését visszaható burok által
+\end{itemize}
+
+A hurok diagram a jellemző ábrázolási formája más néven CLD (Casual Loop Diagram).
+
+A modell 3 fő elemből áll.
+Ezek:
+
+\begin{itemize}
+	\item készletek
+	\item  áramlások
+	\item  késések
+\end{itemize}
+
+
+Ezek kölcsönösen kapcsolatban állnak, hatnak egymásra, illetve változnak.
+A kimeneti érték a visszaható hurok sűrűségétől, illetve a hatás sebességétől függ. 
+Gyakran alkalmazzák ezt a diagramot döntéshozáshoz, mert könnyen olvasható.
+
+Alkotásakor először az egyes elemek között fennálló kapcsolatokat kell meghatározni. Majd ezekhez függvényeket, numerikus értékeket rendelni. Majd addig kell a futtatást pontosítani, amíg az érték nem tükrözi a valóságot. 
+
+
+
+\textbf{DES Discrete Event Simulation (Eseményvezérelt DES)}
+
+Ez a modell állapotváltozók és események hálózata, ahol diszkrét időközönként az állapotváltozók állapotot változtatnak.
+Az események bekövetkezésének időpontjai ezek a diszkrét időközök. Az események pedig pillanatnyi történések, amelyek megváltoztathatják a rendszer állapotát.
+Ez az állapotváltozás valamilyen változást idéz elő a rendszer erőforrásaiban. Ennek a változásnak a mértéke egységekben mérhető.
+
+\textbf{ABS (ágens alapú)}
+
+Ezek a szimulációs modellek legújabb csoportjába tartoznak. Azt az aktív szoftver modult nevezzük ágensnek, mely valamilyen beavatkozást végez a környezetéből beérkező információ hatására. 
+Most tekintsük át a logisztikai alkalmazását. 
+
+A strukturális változásoknak a modellezéséhez fejlesztették ki ezt a platformot. Az ágens alapú modell az ellátási láncban lévő virtuális vállalatok hatását szimulálja. Lényege, hogy egymástól eltérő ágenseket elhelyezünk, amelyek a virtuális vállalatokat reprezentálják. Ezeknek a vállalatoknak a tevékenységét szintén egy ágens szimulálja. Ezek különböző termékeket állítanak elő. Az összes ágens a saját termékei koncentrál, de közben egymásra is hatással vannak. Fontos, hogy ezek a logisztikai folyamatok a valóságban is ágensekből állnak, például csomagoló, targonca kezelő. 
+
 
 \textbf{Végeselem}
 
@@ -27,16 +96,7 @@ Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon s
 
 A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk/megjelenítünk kis részecskéket, és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 
-Minden részecskének van színe, mérete,súlya ami az összesre nézve azonos. 
+Minden részecskének van x, y koordinátája, sugara, színe, mozgás vektora, visszapattanási együtthatója és mérete. 
 
-A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, súly, és szín) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire. 
+A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, szín, mozgás vektor, méret és visszapattanási együttható) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire, illetve a programban van úgynevezett pohár, amihez szintén szükséges ütközésvizsgálat. A pohár kirajzolása is ebben a részben történik. 
 
-\Section{Cella alapú módszer}
-
-Rácsfelbontás, most praktikusan egy négyzetrács
-
-Mátrixban ábrázolható
-
-Minden cellának van egy kitöltöttség értéke, például $[0, 1]$, ahol 0 az üres, 1 a teljesen kitöltött.
-
-Jelölni kell a falakat is, például negatív vagy valamilyen nagyobb értékkel.

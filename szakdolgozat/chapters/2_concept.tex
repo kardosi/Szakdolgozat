@@ -4,6 +4,9 @@
 
 \Section{A szimuláció alapja}
 
+\cite{szim}
+\cite{szim2}
+
 Ha valamit szimulálunk az olyan, mintha utánoznánk. Azonban a szimulációs módszerek mást jelentenek, mert azokkal egy rendszer viselkedését próbáljuk meghatározni. A modell alkalmazásával képesek vagyunk létrehozni állapot sorozatokat, amelyek leírják az adott rendszert vagy néhány komponensének viselkedését. 
 
 A szimulációnak a használata ott javasolt, ahol
@@ -15,7 +18,7 @@ A szimulációnak a használata ott javasolt, ahol
 	\item a kimenő eredmény nem észlelhető
 \end{itemize}
 
-Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívűl, még használják pénzügyi, jármű és dinamikai modelleknél. 
+Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívül, még használják pénzügyi, jármű és dinamikai modelleknél. 
 Működés alapján 3 fajta modellt különböztetünk meg.
 Ezek:
 
@@ -73,6 +76,9 @@ A strukturális változásoknak a modellezéséhez fejlesztették ki ezt a platf
 
 
 \Section{Végeselem}
+\cite{veges1}
+\cite{veges2}
+\cite{wiki}
 
 A véges elem módszerekkel
 bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
@@ -94,9 +100,11 @@ Azonban a véges elem módszer kézi számításokra nem alkalmas, mert nagyon s
 \Section{Részecske alapú megközelítés}
 
 
-A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök ábrázoljuk. A program működésének alapelve, hogy random ledobunk/megjelenítünk kis részecskéket, és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
+A részecske alapú megközelítés lényege röviden, hogy a vizet, mint kis részecskék vagyis körök/négyzetek ábrázoljuk. A program működésének alapelve, hogy random ledobunk/megjelenítünk kis részecskéket, és nézzük, hogy hol ütköznek, majd megvizsgáljuk, hogy az ütközés után merre kell haladniuk. 
 
-Minden részecskének van x, y koordinátája, sugara, színe, sebesség vektora, visszapattanási együtthatója és mérete. 
+Minden részecskének van x, y koordinátája, sugara/magassága, szélessége, színe, sebesség vektora, visszapattanási együtthatója és mérete. 
 
-A megvalósításhoz 3 osztályt használunk, ami a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, szín, mozgás vektor, méret és visszapattanási együttható) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire, illetve a programban van úgynevezett pohár, amihez szintén szükséges ütközésvizsgálat. A pohár kirajzolása is ebben a részben történik. 
+A megvalósításhoz mindkét esetben 3 osztályt használunk. Ami a kör alapúban a pont, részecske és maga a szimuláció. A pont osztályban a pontok tulajdonságai vannak, koordináták, eltolás és távolságszámítás.  A részecske osztályban  a részecskék tulajdonságai (koordináták, sugár, szín, mozgás vektor, méret és visszapattanási együttható) és egy részecske kirajzolása. A szimulátor osztályban pedig maga a szimulátor, a részecskék létrehozásával, a kép frissítéssel és az ütközésvizsgálatokkal, ami külön van a fallal való ütközésre és a részecskék közöttire, illetve a programban van úgynevezett pohár, amihez szintén szükséges ütközésvizsgálat. A pohár kirajzolása is ebben a részben történik.
+
+A négyzet alapúban pedig, a rács, a pixel és a szimuláció. A rács osztályban a sorok, oszlopok száma van. A pixel osztályban a pixelek tulajdonságai (koordináták, szín, szélesség, magasság, méret, mozgás vektor és visszapattanási együttható), illetve távolságszámítás, és egy részecske kirajzolása. A szimulátor osztályban, pedig itt is ugyanazok találhatóak, mint a kör alapúban. 
 

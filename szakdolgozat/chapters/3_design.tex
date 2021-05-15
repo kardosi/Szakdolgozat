@@ -1,39 +1,57 @@
 \Chapter{Tervezés}
 \Section{Nyelv használat}
-A program HTML, JavaScript nyelven fog íródni, canvas használatával. Illetve az objektum orientált programozáshoz igazodva osztályokat fog használni. Ezekből 3 darabra lesz szükség. 
+A program HTML, JavaScript nyelven fog íródni, canvas használatával. Illetve az objektum orientált programozáshoz igazodva osztályokat fog használni. Ezekből 3 darabra lesz szükség mindkét program esetében. 
 
 
 \Section{Megjelenítés kezdetek} 
 
 
-A program kezdetében először el kell dönteni, hogy hogyan rajzoljuk ki a köröket. Ehhez 2 módszer is szóba jöhet. Aztán ezek közül ki kell választani, nyilván azt amelyik gyorsabbnak bizonyul. 
+Az egyik program esetében először el kell dönteni, hogy hogyan rajzoljuk ki a köröket. Ehhez 2 módszer is szóba jöhet. Aztán ezek közül ki kell választani, nyilván azt amelyik gyorsabbnak bizonyul. 
+A másik program esetében a négyzetek kirajzolásán kell gondolkoznunk. Itt nem merült fel 2 módszer, mivel a körök esetében már vizsgáltunk gyorsaságot, valószínűleg a négyzetek esetében is ugyanazt a módszert találnánk gyorsabbnak.
 
 \Section{Mozgatás}
 
-Ha kész a megjelenítés, akkor jöhet a mozgatás. Aminél számításba kell venni, hogy a gravitációnak kell a körökre hatnia. 
+Ha kész a megjelenítés, akkor jöhet a mozgatás. Aminél számításba kell venni, hogy gravitációnak kell a körökre/négyzetekre hatnia  és, hogy minden részecskének van súlya, sűrűsége. Illetve a képfrissítéssel is számolnunk kell.
 
 \Section{Ütközések}
 
-Ha megvan a mozgás utána jöhet az ütközések vizsgálata, aminél érdemes először a falakkal kezdeni. Aztán ha az megvan jöhet a körök egymás közötti ütközése is. 
+
+\textbf{Fal}
+Ha megvan a mozgás utána jöhet az ütközések vizsgálata, aminél érdemes először a falakkal kezdeni. Mind a 4 falra vizsgálnunk kell az ütközéseket. Itt a körök esetében számításba kell venni a sugarat is. A négyzetek esetében pedig a magasságot meg a szélességet. 
+
+\textbf{Részecskék}
+Aztán ha az megvan jöhet a részecskék egymás közötti ütközése is. Egymás között is az összes részecskére érdemes nézni az ütközéseket. Itt is számolnunk kell a részecskék súlyával, méretével. 
 
 \Section{Akadályok}
 
-Aztán ha az ütközések is megvannak jöhetnek az akadályok, ami nekünk valószínűleg egy pohár lesz. Aztán erre/ezekre az akadályokra is szükséges megírni az ütközésvizsgálatokat. 
+Aztán ha az ütközések is megvannak jöhetnek az akadályok, ami nekünk valószínűleg egy pohár lesz. Aztán erre/ezekre az akadályokra is szükséges megírni az ütközésvizsgálatokat. Itt vizsgálnunk kell a részecskék aktuális helyzetét az akadályok/akadályoktól.
 
 
 \Section{UML}
-Ha megvagyunk a program tervezésével jöhet az UML diagram. A következő ábrán \Aref{fig:dia} a programhoz kapcsolódó UML diagram látható. Jól látható a 3 osztály és a közöttük lévő kapcsolatok, illetve a bennük lévő attribútumok és műveletek. 
+Ha megvagyunk a program tervezésével jöhetnek az UML diagramok. A következő ábrán \Aref{fig:dia1} a kör alapú programhoz kapcsolódó UML diagram látható. A következő képen \Aref{fig:dia2} pedig a négyzet alapú programhoz tartozó UML diagram látható. Mindkét diagramon jól láthatóak az osztályok és a közöttük lévő kapcsolatok, illetve a bennük lévő attribútumok és műveletek.
 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=1]{images/dia.png}
-	\caption{UML diagram}
-	\label{fig:dia}
+	\includegraphics[width=\textwidth]{images/Diagram1.png}
+	\caption{UML diagram (kör)}
+	\label{fig:dia1}
 \end{figure}
 
 
 Jól látható, hogy a Particle osztály, a Point osztály leszármazottja, 2 származtatott metódussal.
+Mindegyik osztály tartalmaz attribútumokat és műveleteket is.
 
-Mindegyik osztály tartalmaz attribútumokat és műveleteket is. 
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{images/Diagram2.png}
+	\caption{UML diagram (négyzet)}
+	\label{fig:dia2}
+\end{figure}
+
+
+Itt is jól láthatóak a kapcsolatok az osztályok között. Itt viszont nem mindegyik osztály tartalmaz műveleteket, de attribútumokat igen. 
+
 

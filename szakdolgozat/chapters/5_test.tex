@@ -4,11 +4,40 @@
 \Section{Jquerry test}
 
 
-A program megvalósításához szóba jött a Jquerry használata is, és ezáltal az is, hogy vajon a Jquerry-s vagy a sima context-re rajzolás lehet-e a gyorsabb.
+A program megvalósításához szóba jött a Jquery használata is, és ezáltal az is, hogy vajon a Jquery-s vagy a sima context-re rajzolás lehet-e a gyorsabb.
 
-Ehhez a vizsgálathoz két példa program is készült, az egyik azt vizsgálta, hogy melyik megoldás milyen gyorsasággal rajzol ki. 
 
-1000-től 29000-ig vizsgáltuk a kirajzolást ezresével növelve a méretet, ugyanazzal a kitöltéssel, mérettel, és már itt láttuk, hogy a Jquerry sokkal lassabb. Az itt kapott futási időket \Aref{fig:pieces}. grafikon tartalmazza. 
+Ehhez a vizsgálathoz két példa program is készült, az egyik azt vizsgálta, hogy melyik megoldás milyen gyorsasággal rajzol ki.
+
+Nézzük a két kirajzolást.
+
+Jquery:
+\begin{java}
+	$('canvas').drawArc({
+		strokeStyle: 'black',
+		fillStyle: 'blue',
+		strokeWidth: 2,
+		x: 100, y: 200,
+		radius: 50
+	});
+
+\end{java}
+
+Context:
+
+\begin{java}
+	context.fillStyle = 'blue';
+	context.strokeStyle = 'black';
+	context.lineWidth = 2;
+	context.beginPath();
+	context.arc(200, 100, 50, 0, 2 * Math.PI);
+	context.fill();
+	context.stroke();
+	
+\end{java}
+
+
+1000-től 29000-ig vizsgáltuk a kirajzolást ezresével növelve a méretet, ugyanazzal a kitöltéssel, mérettel, és már itt láttuk, hogy a Jquery sokkal lassabb. Az itt kapott futási időket \Aref{fig:pieces}. grafikon tartalmazza.
 
 \begin{figure}[h]
 	\centering
@@ -18,9 +47,11 @@ Ehhez a vizsgálathoz két példa program is készült, az egyik azt vizsgálta,
 \end{figure}
 
 
-De vizsgáltunk egy másik szempontot is, még pedig, hogy ha a körök méretét növeljük, akkor melyik a gyorsabb. 
 
-10-től 290-es méretig rajzoltattunk ki köröket tizesével növelve a méretet, és itt is láthattuk, hogy a Jquerry lassabb, így a programban azt a megoldást nem használtuk. Az itt kapott futási időket pedig \Aref{fig:radius}. grafikon tartalmazza
+De vizsgáltunk egy másik szempontot is, még pedig, hogy ha a körök méretét növeljük, akkor melyik a gyorsabb. A fent említett kirajzolásokban, ez úgy jelent meg, hogy ahová a kör sugarát írtuk (ami ott 50 volt) oda egy betű változót írtunk, aminek utána az értékét változtattuk.
+
+10-től 290-es méretig rajzoltattunk ki köröket tizesével növelve a méretet, és itt is láthattuk, hogy a Jquery lassabb, így a programban azt a megoldást nem használtuk. Az itt kapott futási időket pedig \Aref{fig:radius}. grafikon tartalmazza
+
 
 \begin{figure}[h]
 	\centering
@@ -29,13 +60,15 @@ De vizsgáltunk egy másik szempontot is, még pedig, hogy ha a körök méreté
 	\label{fig:radius}
 \end{figure}
 
+
+
 \Section{Program használata}
 
-A program használata nagyon egyszerű, ha betöltött az oldal megjelennek a kis körök/részecskék. Azokon kívül alól az előző fejeztben \Aref{fig:html} már bemutatott, dolgokat láthatjuk. 
+A programok használata nagyon egyszerű, ha betöltött az oldal megjelennek a kis részecskék. Azokon kívül alól az előző fejezetben \Aref{fig:html} már bemutatott, dolgokat láthatjuk. 
 
 \textbf{Csúszkák}
 
- A csúszkák segítségével a részecskékre ható erőket lehet módosítani.
+A csúszkák segítségével a részecskékre ható erőket lehet módosítani. Ha jobbra húzzuk őket vagyis egyre több kék színt látunk, akkor azzal növeljük az értékeket. Ha balra vagyis egyre kevesebb kék színt látunk, azzal csökkentjük az értékeket. Az itt beállított értékeket, már az előbb is bemutatott módon \Aref{fig:ertekek} folyamatosan nyomon követhetjük a képernyő bal felső sarkában. 
 
 
 \textbf{Gombok}
@@ -44,7 +77,7 @@ A programban 2 gomb van ezek a pohár hozzáadás, illetve eltávolítás. A poh
 
 \textbf{Koordináták}
 
-A pohár koordinátáit lehet még módosítani a programban. Amik már szintén az előző fejezetben \Aref{fig:pohar} bemutatott módon hatnak a pohárra. 
+Az előzőleg említett gombokkal hozzáadott pohár koordinátáit lehet még módosítani a programban. Amik már szintén az előző fejezetben \Aref{fig:pohar} bemutatott módon hatnak a pohárra. Itt be is írhatunk számokat, de ha az egérrel a számok fölé megyünk megjelenik egy felfelé és egy lefelé mutató nyíl, amikkel növelhetjük illetve csökkenthetjük az értékeket. 
 
 \textbf{Követelmények}
 

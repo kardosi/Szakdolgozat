@@ -3,11 +3,11 @@
 
 \Section{Részecske alapú}
 
-Nézzük részletesebben a részecske alapú program megvalósítását. Maga a program 3 osztályból, egy ezeket összefogó javascript-ből, és egy CSS-ből meg egy HTML-ből áll. 
+Nézzük részletesebben a részecske alapú programok megvalósítását. Maguk a programok 3 osztályból, egy ezeket összefogó javascript-ből, és egy CSS-ből meg egy HTML-ből állnak. Ezeket az osztályokat láthattuk már az előző fejezetben UML diagramokként. \Aref{fig:dia1} \Aref{fig:dia2}
 
 \Section{HTML}
 
- A HTML-ben a szokásos HTML elemek vannak, vagyis itt kötjük össze magát a programot, az osztályokat, a CSS-t és a javascript-et. Itt adjuk, meg hogy mekkora legyen a canvas amire a programot megvalósítjuk. Annyi érdekessége van, hogy a body elemben van egy eseménykezelő ami az onload, és azt a célt szolgálja, hogy az adott esemény csak az oldal betöltődése és megjelenése után következzen be.
+A HTML-ben a szokásos HTML elemek vannak, vagyis itt kötjük össze magát a programot, az osztályokat, a CSS-t és a javascript-et. Mindkét program esetében a HTML fájlunk ugyanúgy néz ki. Itt adjuk, meg hogy mekkora legyen a canvas amire a programot megvalósítjuk. Annyi érdekessége van, hogy a body elemben van egy eseménykezelő ami az onload, és azt a célt szolgálja, hogy az adott esemény csak az oldal betöltődése és megjelenése után következzen be.
 Találunk itt még 2 db gombot, amivel a programhoz adhatunk poharat, illetve el is távolíthatjuk azt.
 Illetve a HTML fájlban még találunk 2 darab táblázatot, ami különböző dolgok állítására szolgál. Az elsőben a részecskék sűrűségét, a gravitációt, a húzó erőt és a részecskék súlyát lehet állítani. 
 A második táblázatban a pohárhoz tartozó koordinátákat, amiknek elnevezése x1,y1, x2,y2, x3,y3, x4,y4. Ezek a koordináták a következőképpen \Aref{fig:pohar} helyezkednek el.
@@ -37,30 +37,67 @@ A különböző beállításokra szolgáló dolgok a következőképpen jelennek
 
 \Section{CSS}
 
-A CCS fájlban pedig a HTML-től is kevesebbet találunk. Egyedül a canvas-ra határozunk meg benne egy stílust, ami pedig nem más, mint hogy legyen egy 1 pixel vastagságú fekete határa/oldala.
+A CCS fájl szintén ugyanaz a két programra nézve és ebben pedig a HTML-től is kevesebbet találunk. Egyedül a canvas-ra határozunk meg benne egy stílust, ami pedig nem más, mint hogy legyen egy 1 pixel vastagságú fekete határa/oldala.
 
 \Section{Osztályok}
 
-De térjünk át a program érdekesebb részeire. Először is a 3 osztályt nézzük sorban, amik a pont, részecske és a szimulátor.
+De térjünk át a program érdekesebb részeire. Először is a 3 osztályt nézzük sorban, amik a köröknél a pont, részecske és a szimulátor.
+A négyzeteknél pedig a rács, pixel és a szimulátor.
 
-\Section{Pont osztály} 
+\Section{Pont osztály (kör)} 
 
-A pont osztályban még semmi érdekességet nem találhatunk, van egy constructora, getter, setter, move, eltoló és távolság számító metódus. Az utóbbit a szimulátor programban használjuk. Itt a constructor a pont x, y koordinátájára van, getter, setter pedig szinten az x, y -ra. Az eltoló metódus az x, y koordinátákhoz ad hozzá mindig egy értéket, ami a metódus hívásánál lehet átadni, hogy mennyi legyen. A távolság számító metódus pedig, ahogy a neve is mutatja távolságot számít 2 pont között. Ez a távolság számítás a matematikából is jól ismert távolságszámítás. Kivonjuk egymásból a két pont koordinátáit, majd négyzetre emeljük a kapott értékeket, azokat összeadjuk, majd pedig gyököt vonunk. 
+A pont osztályban még semmi érdekességet nem találhatunk, van egy constructora, getter, setter, move, eltoló és távolság számító metódus. Az utóbbit a szimulátor programban használjuk. Itt a constructor a pont x, y koordinátájára van, getter, setter pedig szinten az x, y -ra. Az eltoló metódus az x, y koordinátákhoz ad hozzá mindig egy értéket, ami a metódus hívásánál lehet átadni, hogy mennyi legyen. A távolság számító metódus pedig, ahogy a neve is mutatja távolságot számít 2 pont között. Ez a távolság számítás a matematikából is jól ismert távolságszámítás. Kivonjuk egymásból a két pont koordinátáit, majd négyzetre emeljük a kapott értékeket, azokat összeadjuk, majd pedig gyököt vonunk. Ez a következőképpen néz ki a programban:
+\begin{java}
+	distance(other)
+	{
+		let dx = other.x - this._x;
+		let dy = other.y - this._y;
+		let distance = Math.sqrt(dx * dx + dy * dy);
+		return distance;
+	}
+\end{java} 
 
-\Section{Részecske osztály}
+\Section{Részecske osztály (kör)}
 
-A részecske osztályban már több érdekességet találunk. Ez az osztály a pont leszármazottja. Neki is van construktora, getter-ek, setter-ek, és egy rajzoló metódus. Itt a construktor egy részecske tulajdonságait írja le. Minden részecskének van x,y koordinátája, színe, sebesség vektora, visszapattanási együtthatója, és mérete. Ezekben különbség a részecskék között csak az x,y koordinátákban van illetve a sebesség vektorban. A többi dolog az összes részecskére nézve azonos. Getter, setter metódusai a sugárnak és a színnek vannak. A rajzoló metódus, pedig egyetlen részecskét rajzol ki. Ez a következőképpen néz ki, a részecske színe a constructorban megadott szín lesz. Majd a koordinátája ugyaninnen az x és y koordináta , illetve a sugara is a fent megadott sugár lesz. 
+A részecske osztályban már több érdekességet találunk. Ez az osztály a pont leszármazottja. Neki is van konstruktora, getter-ek, setter-ek, és egy rajzoló metódus. Itt a konstruktor egy részecske tulajdonságait írja le. Minden részecskének van x,y koordinátája, színe, sebesség vektora, visszapattanási együtthatója, és mérete. Ezekben különbség a részecskék között csak az x,y koordinátákban van illetve a sebesség vektorban. A többi dolog az összes részecskére nézve azonos. Getter, setter metódusai a sugárnak és a színnek vannak. A rajzoló metódus, pedig egyetlen részecskét rajzol ki. Ez pedig így történik a programban: 
+\begin{java}
+	draw()
+	{
+		
+		context.fillStyle = this.color;
+		context.beginPath();
+		context.arc(this.x, this.y, this.radius, 
+		0, 2 * Math.PI);
+		context.fill();
+	}
+\end{java}
+Ez a következőt jelenti, a részecske színe a konstruktorban megadott szín lesz. Majd a koordinátája ugyaninnen az x és y koordináta, illetve a sugara is a fent megadott sugár lesz. 
 
-\Section{Szimulátor osztály}
+\Section{Szimulátor osztály (kör)}
 
 A szimulátor osztály a legérdekesebb, itt találhatóak a program fő részei. Itt hozzuk létre a részecskéket, rajzoljuk ki őket, itt vizsgáljuk az ütközéseket (falra, részecskék között, pohárral), itt hozzuk létre a poharat. 
 
-\textbf{Constructor}
-Először itt is van constructor, ahol azt adhatjuk meg, hogy hány db részecske legyen a programban. Ez úgy történik, hogy meghívjuk a részecskelétrehozó függvényt és paraméterként átadjuk a részecskék számát.
+\textbf{Konstruktor}
+Először itt is van konstruktor, ahol azt adhatjuk meg, hogy hány db részecske legyen a programban. Ez úgy történik, hogy meghívjuk a részecskelétrehozó függvényt és paraméterként átadjuk a részecskék számát.
 
 \textbf{Frissítés}
 
-Van egy frissítés, ahol azt adjuk meg, hogy frissítés alkalmával mi történjen. Töröljük a canvast, majd beállítjuk a részecskék sebességét, és sebesség koordinátáit. Ez a következőképpen működik: kiszámítjuk az aerodinamikai erőket x-re is és y-ra is ezzel a képlettel $[-0.5 * Cd * A * v^2 * rho]$, az ebben a képletben szereplő Cd és A, a húzóerő és a sűrűség, ezek alap értéke 0.47 és 1.22, de ez módosítható a húzóerő 0 és 1 között, a sűrűség pedig 0 és 1000 között, majd megvizsgáljuk ezen értékeket, hogy számok-e ha számok akkor a kiszámolt értékekkel számolunk, ha nem akkor pedig 0-val. Kiszámítjuk a részecske sebesség vektorát, mivel nekünk y irányban mozognak a részecskék a gyorsulási együtthatóval ami a földön és a programban is 9.82 m/(s*s), illetve a gravitációval számolva. A programban a gravitáció alap értéke 0.05, de ez az érték 0 és 0.1 között módosítható. De ezek mellé számításba kell vennünk a részecskék súlyát is, aminek szintén van egy alap értéke, mégpedig 10kg, de ez érték is módosítható 1 és 1000kg között. Majd a részecskék x és y koordinátáihoz hozzáadva a sebesség vektort, számolva a kép frissítés értékével és szorozva 100-al az értéket, megkapjuk, a részecskék új pozícióját.
+Van egy frissítés, ahol azt adjuk meg, hogy frissítés alkalmával mi történjen. Töröljük a canvast, majd beállítjuk a részecskék sebességét, és sebesség koordinátáit. Ez a következőképpen működik: kiszámítjuk az aerodinamikai erőket x-re is és y-ra is ezzel a képlettel $[-0.5 * Cd * A * v^2 * rho]$, az ebben a képletben szereplő Cd és A, a húzóerő és a sűrűség, ezek alap értéke 0.47 és 1.22, de ez módosítható a húzóerő 0 és 1 között, a sűrűség pedig 0 és 1000 között, majd megvizsgáljuk ezen értékeket, hogy számok-e ha számok akkor a kiszámolt értékekkel számolunk, ha nem akkor pedig 0-val. Ez a képlet a programban a következőképpen néz ki:
+\begin{java}
+	let fx = -0.5 * drag * density *
+	 this._particles[i].area *
+	  this._particles[i].velocity.x *
+	   this._particles[i].velocity.x *
+	    (this._particles[i].velocity.x /
+	     Math.abs(this._particles[i].velocity.x));
+	let fy = -0.5 * drag * density *
+	 this._particles[i].area *
+	  this._particles[i].velocity.y *
+	   this._particles[i].velocity.y *
+	    (this._particles[i].velocity.y /
+	     Math.abs(this._particles[i].velocity.y));
+\end{java}
+Kiszámítjuk a részecske sebesség vektorát, mivel nekünk y irányban mozognak a részecskék a gyorsulási együtthatóval ami a földön és a programban is 9.82 m/(s*s), illetve a gravitációval számolva. A programban a gravitáció alap értéke 0.05, de ez az érték 0 és 0.1 között módosítható. De ezek mellé számításba kell vennünk a részecskék súlyát is, aminek szintén van egy alap értéke, mégpedig 10kg, de ez érték is módosítható 1 és 1000kg között. Majd a részecskék x és y koordinátáihoz hozzáadva a sebesség vektort, számolva a kép frissítés értékével és szorozva 100-al az értéket, megkapjuk, a részecskék új pozícióját.
 
 \textbf{Részecskék létrehozása}
 
@@ -73,8 +110,56 @@ Végig megyünk az előbb létrehozott tömbön, amiben meg vannak az adatok a k
 
 
 \textbf{Fallal való ütközés}
+\cite{bounce}
+\cite{game}
 
-Majd jön az ütközés vizsgálat, amit először a falakra vizsgálunk meg. A fallal való ütközést külön nézzük mind a 4 falra, majd minden esetben ütközés után átállítjuk a részecske sebességvektorát, illetve a pozícióját a megfelelő értékekre. A sebesség vektort, minden esetben ugyanúgy számítjuk, szorozzuk az adott oldalhoz tartozó sebesség vektor x, vagy y koordinátáját a visszapattanási együtthatóval. A részecskék x, y koordinátájára pedig az oldal határozza meg a számításra, amire éppen nézzük az ütközést. Jobb oldalon a canvas szélességéből kell kivonni a sugarat. Bal oldalon pedig csak a sugárral kell számolnunk. Ugyanez a helyzet a felső és az alsó oldallal is. Lent a canvas magasságából vonjuk ki a kör sugarát, fent pedig csak a sugárral számolunk.
+Majd jön az ütközés vizsgálat, amit először a falakra vizsgálunk meg. Ami a következőképpen néz ki:
+\begin{java}
+	for (var i = 0; i < this._particles.length; i++) {
+		if(this._particles[i].x 
+		+ this._particles[i].velocity.x 
+		> canvas.width 
+		- this._particles[i].radius)
+		{
+			this._particles[i].velocity.x 
+			*= this._particles[i].e;
+			this._particles[i].x 
+			= canvas.width 
+			- this._particles[i].radius;
+		}
+		if(this._particles[i].y 
+		+ this._particles[i].velocity.y 
+		> canvas.height 
+		- this._particles[i].radius)
+		{
+			this._particles[i].velocity.y 
+			*= this._particles[i].e;
+			this._particles[i].y 
+			= canvas.height 
+			- this._particles[i].radius;
+		}
+		if(this._particles[i].x 
+		+ this._particles[i].velocity.x 
+		< this._particles[i].radius)
+		{
+			this._particles[i].velocity.x 
+			*= this._particles[i].e;
+			this._particles[i].x 
+			= this._particles[i].radius;
+		}
+		if(this._particles[i].y 
+		+ this._particles[i].velocity.y 
+		< this._particles[i].radius)
+		{
+			this._particles[i].velocity.y 
+			*= this._particles[i].e;
+			this._particles[i].y 
+			= this._particles[i].radius;
+		}
+		
+	}
+\end{java}
+Ez a következőt jelenti. A fallal való ütközést külön nézzük mind a 4 falra, majd minden esetben ütközés után átállítjuk a részecske sebességvektorát, illetve a pozícióját a megfelelő értékekre. A sebesség vektort, minden esetben ugyanúgy számítjuk, szorozzuk az adott oldalhoz tartozó sebesség vektor x, vagy y koordinátáját a visszapattanási együtthatóval. A részecskék x, y koordinátájára pedig az oldal határozza meg a számításra, amire éppen nézzük az ütközést. Jobb oldalon a canvas szélességéből kell kivonni a sugarat. Bal oldalon pedig csak a sugárral kell számolnunk. Ugyanez a helyzet a felső és az alsó oldallal is. Lent a canvas magasságából vonjuk ki a kör sugarát, fent pedig csak a sugárral számolunk.
 
 \textbf{Részecskék közötti ütközés}
 
@@ -82,17 +167,167 @@ A részecskék  közötti ütközés kicsit összetettebb, itt mindig 2 részecs
 
 \textbf{Pohár kirajzolás}
 
-A pohár rajzoláshoz a bekért koordináták értékeivel számolunk. Maga a pohár 3 vonalból áll. 
+A pohár rajzoláshoz a bekért koordináták értékeivel számolunk. Maga a pohár 3 vonalból áll. Ehhez pedig a következő kódrészlet tartozik:
+\begin{java}
+	context.beginPath();
+	context.moveTo(x1, y1);
+	context.lineTo(x2, y2);
+	context.lineTo(x3, y3);
+	context.lineTo(x4, y4);
+	context.stroke();
+\end{java}
 
 
 \textbf{Pohárral való ütközés}
+\cite{collision}
 
 A pohárral való ütközésvizsgálathoz is szükségesek a bekért koordináták értékei. Egy x és egy y változóba letároljuk a részecskék x és y koordinátájához hozzáadva a sebesség vektorokat. Majd megnézzük van-e ütközés. Ez a következőképpen történik, a 3 vonalra külön-külön nézzük az ütközéseket. Van 3 darab függvény amivel ezt vizsgáljuk, mindegyik vonalra egy. Ezekben a függvényekben kiszámoljuk a vonalak hosszát, majd a vonal és a kör szorzatát számoljuk. Megkeressük a vonalakhoz közeli koordinátákat. Majd egy másik függvénnyel megvizsgáljuk, hogy a körök milyen távol vannak a vonalaktól. Ez úgy történik, hogy kiszámoljuk a pont távolságát a vonal 2 végpontjától, majd a vonalak hosszát, majd megadunk egy tűréshatárt ami itt 0.1 és megnézzük, hogy a körök távolsága a vonalak végétől, hogyan viszonyulnak a vonalak hosszához. Majd visszatérve az előző függvénybe kiszámoljuk a távolságát a közeli pontoknak, majd ha ez kisebb mint a sugár akkor igaz az ütközés. 
 
 
 A részecske osztály ezeket tartalmazná. 
 
-\textbf{Összefoglaló javascript}
 
-Most nézzük az ezeket összefogó javascript miket tartalmaz. Ez az egész egy funkció, ami mint már említettem a HTML-ben van meghívva egy eseménykezelővel. Ebben van benne a szimulátor létrehozása, a canvas beállítása, és egy funkció a frissítésre, ami 60 fps-el frissít, és meghívja a szimulátor metódusait, a frissítést, rajzolást és ütközésvizsgálatokat. Illetve van 2 funkció, amik a pohár hozzáadásához illetve eltávolításához szükséges. Van egy pohár változó ami vagy igaz vagy hamis, annak az értékét módosítjuk itt. Majd ha igaz, akkor az előbb említett frissítésnél meghívja a pohár kirajzoló metódust, illetve az arra vonatkozó ütközésvizsgálatot.  
+\Section{Rács osztály (négyzet)}  
+
+A rács osztály nagyon hasonlít a köröknél lévő pont osztályra, de viszont eltér tőle. Mégpedig abban tér el, hogy itt csak a sorokra illetve az oszlopokra van egy konstruktor, meg az ezekhez tartozó getter és setter metódusok. 
+
+
+\Section{Pixel osztály (négyzet)}
+
+A pixel osztályunk a kör alapú program részecske osztályához hasonlít, de itt is találunk eltérést. Mégpedig itt az a különbség, hogy míg a kör alapú programban a pont osztályban van a távolságszámítás, addig itt ebben az osztályban találhatjuk azt meg. Itt is egy részecske, vagyis pixel tulajdonságait tároljuk. Ezek a tulajdonságok pedig nagy részben egyeznek az előzőleg említettekkel, kivéve, hogy itt nem sugár van, hanem magasság meg szélesség. Itt is találunk getter és setter metódusokat is. Illetve egy pixel kirajzolása is itt található. Ez a következőképpen néz ki:
+\begin{java}
+	  draw()
+	{
+		
+		context.fillStyle = this.color;
+		context.fillRect(this.x, this.y,
+		 this.width, this.height);
+		
+		
+	}
+\end{java} 
+
+Ez azt jelenti, hogy a részecske színe a konstruktorban megadott szín lesz. Koordinátái, magassága, szélessége szintén a fent megadott adatok lesznek.
+
+
+\Section{Szimulátor osztály (négyzet)}
+
+A szimulátor osztályunk szintén hasonlít a másik programunk szimulátor osztályához. Itt is ez a program fő része, a kirajzolásokkal, ütközésvizsgálatokkal. 
+
+\textbf{Konstruktor}
+Szintén a részecskék vagyis pixelek számát adhatjuk meg, olyan módon mint a kör alapúban.
+
+\textbf{Frissítés}
+Ez a rész teljes egészében megegyezik a másik programnak ezen részével. Kivéve persze az elnevezéseket. A fent bemutatott kódrészletet ebben a programban is megtalálhatjuk.
+
+\textbf{Részecskék létrehozása}
+A random számok generálása itt is megtörténik, de viszont nem ugyanazon tartományokon belül, mint a köröknél. Itt az x-et 0 és 790, y-t pedig 0 és 590 között generálunk. Mivel itt az x, y koordináták a pixelek kezdő koordinátái. Itt adjuk meg, hogy milyen szélesek és magasak legyenek a pixeljeink. Ez az érték nálunk 10, 10 mivel négyzetekről van szó. Illetve itt adjuk még meg a visszapattanás értékét, ami szintén eltér a másik a programban használttól, ugyanis itt az értéke 0.9. Itt is ezen adatokat egy tömbben tároljuk a könnyebbség végett. 
+
+\textbf{Részecskék kirajzolása}
+Ugyanúgy történik, mint a köröknél. 
+
+\textbf{Fallal való ütközés}
+Ez az első rész ami eltér a másik programban lévőtől. Itt is külön nézzük a 4 falra az ütközéseket. Először is két változóba kiszámoljuk a canvas magasságból illetve szélességből kivonva a pixelek magasságát illetve szélességét. Majd ezen értékek segítségével végezzük a vizsgálatokat. Ez a következőképpen néz ki:
+\begin{java}
+	for (var i = 0; i < this._pixels.length; i++) {
+		let rockbottom = canvas.height 
+		- this._pixels[i].height;
+		let rockside= canvas.width
+		- this._pixels[i].width;
+		if (this._pixels[i].y > rockbottom) {
+			this._pixels[i].y = rockbottom;
+			this._pixels[i].velocity.y 
+			*= this._pixels[i].e;
+		}
+		if (this._pixels[i].y < 0){
+			this._pixels[i].y = 0;
+			this._pixels[i].velocity.y 
+			*= this._pixels[i].e;
+		}
+		
+		if (this._pixels[i].x > rockside) {
+			this._pixels[i].x = rockside;
+			this._pixels[i].velocity.x 
+			*= this._pixels[i].e;
+		}
+		
+		if (this._pixels[i].x < 0){
+			this._pixels[i].x = 0;
+			this._pixels[i].velocity.x 
+			*= this._pixels[i].e;
+			
+		}
+		
+	}
+\end{java}
+ 
+
+\textbf{Részecskék közötti ütközés}
+Ebben a részben a fő különbség a két program között, hogy a számítások eltérnek, ugyanis a négyzetes megközelítésben nincs sugár. Helyette viszont van magasság és szélesség. A számításban ahol a másik programban sugárral számoltunk, itt magassággal illetve szélességgel kell. 
+
+\textbf{Pohár kirajzolása}
+A pohár kirajzolása szintén ugyanúgy történik a két programban. 
+
+\textbf{Pohárral való ütközés}
+Erre is ugyanazt a számítást alkalmaztuk mindkét program esetében. Kivétel itt is, hogy nincs sugár, de helyette szintén a magassággal és szélességgel számolhatunk.
+
+
+
+\Section{Összefoglaló javascript}
+
+Most nézzük az ezeket összefogó javascript miket tartalmaz. Ami szintén mindkét program esetében ugyanaz. Ez az egész egy funkció, ami a következőképpen néz ki az egyik:
+\begin{java}
+	setInterval(function()
+	{
+		simulator.update();
+		simulator.draw();
+		simulator.collisionBall();
+		simulator.collisonWall();
+		if(cup == true)
+		{
+			simulator.drawCup();
+			simulator.collisionCup();
+		}
+		
+		
+		
+	},(1000/60));
+	
+\end{java}
+illetve másik program esetében:
+\begin{java}
+	setInterval(function()
+	{
+		
+		simulator.updatePixels();
+		simulator.draw();
+		simulator.collisonWall();
+		simulator.collisionPixel();
+		
+		if(cup == true)
+		{
+			simulator.drawCup();
+			simulator.collisionCup();
+		}
+		
+		
+		
+	},(1000/60));
+	
+\end{java}
+és mint már említettem ez a HTML-ben van meghívva egy eseménykezelővel. Ebben van benne a szimulátor létrehozása, a canvas beállítása, és egy funkció a frissítésre, ami 60 fps-el frissít, és meghívja a szimulátor metódusait, a frissítést, rajzolást és ütközésvizsgálatokat. 
+
+Illetve van 2 funkció, amik a pohár hozzáadásához illetve eltávolításához szükséges. Ezek a következőképpen néznek ki:
+\begin{java}
+	function addCup(){
+		cup = true;
+		
+	};
+	function remoteCup(){
+		cup = false;
+	};
+	
+\end{java}
+A cup változó fent van létrehozva alapból hamis értékkel, annak az értékét módosítjuk itt. Majd ha igaz, akkor az előbb említett frissítésnél meghívja a pohár kirajzoló metódust, illetve az arra vonatkozó ütközésvizsgálatot.
+
 

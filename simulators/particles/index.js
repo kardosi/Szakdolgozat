@@ -5,7 +5,6 @@ var context = null;
 var simulator = null;
 
 var cup = false;
-var line = false;
 
 
 function initialize(){

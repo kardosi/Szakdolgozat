@@ -4,10 +4,9 @@
 
 \Section{A szimuláció alapja}
 
-\cite{szim}
-\cite{szim2}
 
-Ha valamit szimulálunk az olyan, mintha utánoznánk. Azonban a szimulációs módszerek mást jelentenek, mert azokkal egy rendszer viselkedését próbáljuk meghatározni. A modell alkalmazásával képesek vagyunk létrehozni állapot sorozatokat, amelyek leírják az adott rendszert vagy néhány komponensének viselkedését. 
+
+Ha valamit szimulálunk az olyan, mintha utánoznánk \cite{szim}. Azonban a szimulációs módszerek mást jelentenek, mert azokkal egy rendszer viselkedését próbáljuk meghatározni. A modell alkalmazásával képesek vagyunk létrehozni állapot sorozatokat, amelyek leírják az adott rendszert vagy néhány komponensének viselkedését. 
 
 A szimulációnak a használata ott javasolt, ahol
 
@@ -18,7 +17,7 @@ A szimulációnak a használata ott javasolt, ahol
 	\item a kimenő eredmény nem észlelhető
 \end{itemize}
 
-Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívül, még használják pénzügyi, jármű és dinamikai modelleknél. 
+Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívül, még használják pénzügyi, jármű és dinamikai modelleknél \cite{szim2}. 
 Működés alapján 3 fajta modellt különböztetünk meg.
 Ezek:
 
@@ -76,15 +75,14 @@ A strukturális változásoknak a modellezéséhez fejlesztették ki ezt a platf
 
 
 \Section{Végeselem}
-\cite{veges1}
-\cite{veges2}
-\cite{wiki}
+
+
 
 A véges elem módszerekkel
-bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
+bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük \cite{veges1}. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
 
 
-A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
+A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz \cite{wiki}. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
 
 
 A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. 

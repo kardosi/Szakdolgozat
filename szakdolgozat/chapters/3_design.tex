@@ -1,10 +1,10 @@
 \Chapter{Tervezés}
-\Section{Nyelv használat}
-A program HTML, JavaScript nyelven fog íródni, canvas használatával. Illetve az objektum orientált programozáshoz igazodva osztályokat fog használni. Ezekből 3 darabra lesz szükség mindkét program esetében. 
 
+\Section{A programozási nyelv kiválasztása}
 
-\Section{Megjelenítés kezdetek} 
+A program HTML, JavaScript nyelven fog íródni, HTML5 Canvas használatával. Az objektum orientált programozáshoz igazodva osztályokat fog használni. Ezekből 3 darabra lesz szükség mindkét program esetében. 
 
+\Section{Megjelenítés elkészítésének lépései} 
 
 Az egyik program esetében először el kell dönteni, hogy hogyan rajzoljuk ki a köröket. Ehhez 2 módszer is szóba jöhet. Aztán ezek közül ki kell választani, nyilván azt amelyik gyorsabbnak bizonyul. 
 A másik program esetében a négyzetek kirajzolásán kell gondolkoznunk. Itt nem merült fel 2 módszer, mivel a körök esetében már vizsgáltunk gyorsaságot, valószínűleg a négyzetek esetében is ugyanazt a módszert találnánk gyorsabbnak.
@@ -24,12 +24,12 @@ Aztán ha az megvan jöhet a részecskék egymás közötti ütközése is. Egym
 
 \Section{Akadályok}
 
-Aztán ha az ütközések is megvannak jöhetnek az akadályok, ami nekünk valószínűleg egy pohár lesz \cite{collision}. Aztán erre/ezekre az akadályokra is szükséges megírni az ütközésvizsgálatokat. Itt vizsgálnunk kell a részecskék aktuális helyzetét az akadályok/akadályoktól.
+Amennyiben már ütközések kezeléséhez szükséges kódrészek is megvannak, jöhetnek az akadályok, ami nekünk valószínűleg egy pohár lesz \cite{collision}. Aztán erre/ezekre az akadályokra is szükséges megírni az ütközésvizsgálatokat. Itt vizsgálnunk kell a részecskék aktuális helyzetét az akadályok/akadályoktól.
 
 
 \Section{UML}
-Ha megvagyunk a program tervezésével jöhetnek az UML diagramok. \Aref{fig:dia1} ábra pedig a kör alapú programhoz kapcsolódó UML diagram. \Aref{fig:dia2} ábra pedig a négyzet alapú programhoz tartozó UML diagram. Mindkét diagramon jól láthatóak az osztályok és a közöttük lévő kapcsolatok, illetve a bennük lévő attribútumok és műveletek.
 
+A program megtervezésének egy fontos stádiumát jelenti az UML diagramok elkészítése. \Aref{fig:dia1}. ábra a kör alapú programhoz kapcsolódó UML diagram. \Aref{fig:dia2} ábra pedig a négyzet alapú programhoz tartozó UML diagram. Mindkét diagramon jól láthatóak az osztályok és a közöttük lévő kapcsolatok, illetve a bennük lévő attribútumok és műveletek.
 
 \begin{figure}[h]
 	\centering
@@ -52,6 +52,6 @@ Mindegyik osztály tartalmaz attribútumokat és műveleteket is.
 \end{figure}
 
 
-Itt is jól láthatóak a kapcsolatok az osztályok között. Itt viszont nem mindegyik osztály tartalmaz műveleteket, de attribútumokat igen. 
+Itt is jól láthatóak a kapcsolatok az osztályok között. Ebben az esetben viszont nem mindegyik osztály tartalmaz műveleteket, de attribútumokat igen. 
 
 

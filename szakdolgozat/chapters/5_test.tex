@@ -1,8 +1,6 @@
 \Chapter{Tesztelés}
 
-
-\Section{Jquerry test}
-
+\Section{Natív és jQuery-vel történő kirajzolás}
 
 A program megvalósításához szóba jött a Jquery használata is, és ezáltal az is, hogy vajon a Jquery-s vagy a sima context-re rajzolás lehet-e a gyorsabb.
 
@@ -11,7 +9,9 @@ Ehhez a vizsgálathoz két példa program is készült, az egyik azt vizsgálta,
 
 Nézzük a két kirajzolást. Amik a draw és a draw2 programban is megtalálhatóak.
 
-Jquery:
+\bigskip
+
+\noindent jQuery:
 \begin{java}
 $('canvas').drawArc({
   strokeStyle: 'black',
@@ -20,11 +20,11 @@ $('canvas').drawArc({
   x: 100, y: 200,
   radius: 50
 });
-
 \end{java}
 
-Context:
+\bigskip
 
+\noindent Context:
 \begin{java}
 context.fillStyle = 'blue';
 context.strokeStyle = 'black';
@@ -33,30 +33,30 @@ context.beginPath();
 context.arc(200, 100, 50, 0, 2 * Math.PI);
 context.fill();
 context.stroke();
-	
 \end{java}
 
+\medskip
 
-1000-től 29000-ig vizsgáltuk a kirajzolást ezresével növelve a méretet, ugyanazzal a kitöltéssel, mérettel, és már itt láttuk, hogy a Jquery sokkal lassabb. Az itt kapott futási időket \aref{fig:pieces} ábra tartalmazza.
+1000-től 29000-ig vizsgáltuk a kirajzolást ezresével növelve a méretet, ugyanazzal a kitöltéssel, mérettel, és már itt láttuk, hogy a Jquery sokkal lassabb. Az itt kapott futási időket \aref{fig:pieces}. ábra tartalmazza.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=1]{images/pieces.png}
-	\caption{Jquerry vs context kirajzolás daraszám alapján.}
+	\includegraphics[width=\textwidth]{images/pieces.png}
+	\caption{jQuery vs Context kirajzolás daraszám alapján.}
 	\label{fig:pieces}
 \end{figure}
 
-
+\medskip
 
 De vizsgáltunk egy másik szempontot is, még pedig, hogy ha a körök méretét növeljük, akkor melyik a gyorsabb. A fent említett kirajzolásokban, ez úgy jelent meg, hogy ahová a kör sugarát írtuk (ami ott 50 volt) oda egy betű változót írtunk, aminek utána az értékét változtattuk.
 
-10-től 290-es méretig rajzoltattunk ki köröket tizesével növelve a méretet, és itt is láthattuk, hogy a Jquery lassabb, így a programban azt a megoldást nem használtuk. Az itt kapott futási időket pedig \aref{fig:radius} ábra tartalmazza
+10-től 290-es méretig rajzoltattunk ki köröket tizesével növelve a méretet, és itt is láthattuk, hogy a Jquery lassabb, így a programban azt a megoldást nem használtuk. Az itt kapott futási időket pedig \aref{fig:radius}. ábra tartalmazza
 
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=1]{images/radius.png}
-	\caption{Jquerry vs context kirajzolás méret alapján.}
+	\includegraphics[width=\textwidth]{images/radius.png}
+	\caption{jQuery vs Context kirajzolás méret alapján.}
 	\label{fig:radius}
 \end{figure}
 
@@ -64,7 +64,7 @@ De vizsgáltunk egy másik szempontot is, még pedig, hogy ha a körök méreté
 
 \Section{Program használata}
 
-A programok használata nagyon egyszerű, ha betöltött az oldal megjelennek a kis részecskék. Azokon kívül alul az előző fejezetben már bemutatott dolgokat látjuk (\ref{fig:html} ábra). 
+A programok használata nagyon egyszerű, ha betöltött az oldal megjelennek a kis részecskék. Azokon kívül alul az előző fejezetben már bemutatott dolgokat látjuk (\ref{fig:html}. ábra). 
 
 \textbf{Csúszkák}
 

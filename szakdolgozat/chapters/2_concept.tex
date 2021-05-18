@@ -11,54 +11,46 @@ Ha valamit szimulálunk az olyan, mintha utánoznánk \cite{szim}. Azonban a szi
 A szimulációnak a használata ott javasolt, ahol
 
 \begin{itemize}
-	\item nincsennek analitikus módszerek vagy használatuk körülmények
-	\item veszélyes és hosszadalmas lenne a valóságban tesztelés
-	\item termeléskiesés miatt nem engedélyezett a valóságban tesztelni
-	\item a kimenő eredmény nem észlelhető
+	\item nincsennek analitikus módszerek vagy használatuk körülmények,
+	\item veszélyes és hosszadalmas lenne a valóságban tesztelés,
+	\item termeléskiesés miatt nem engedélyezett a valóságban tesztelni,
+	\item a kimenő eredmény nem észlelhető.
 \end{itemize}
 
 Nagyon sok területen alkalmaznak szimulációt, logisztikai folyamatokon kívül, még használják pénzügyi, jármű és dinamikai modelleknél \cite{szim2}. 
-Működés alapján 3 fajta modellt különböztetünk meg.
-Ezek:
-
+Működés alapján 3 fajta modellt különböztetünk meg. Ezek a következők:
 \begin{itemize}
-	\item SD System Dynamics (rendszerdinamikai SD)
-	\item  DES Discrete Event Simulation (Eseményvezérelt DES)
-	\item  ABS (ágens alapú)
+	\item SD System Dynamics (rendszerdinamikai SD),
+	\item  DES Discrete Event Simulation (Eseményvezérelt DES),
+	\item  ABS (ágens alapú).
 \end{itemize}
 
 \Section{SD System Dynamics (rendszerdinamikai SD)}
 
 Az összetevők változását nézi az idő függvényében. Ezt a módszert döntéshozási szinten használják logisztikai rendszerekben. 
-
-Jellemzői:
-
-\begin{itemize}
-	\item minimális az adatszükséglet
-	\item  struktúrára és stratégiára koncentrál
-	\item  holisztikus megközelítés, alrendszerekkel integrálva
-	\item biztosítja a vállalati stratégia rendszerbe épülését visszaható burok által
-\end{itemize}
-
-A hurok diagram a jellemző ábrázolási formája más néven CLD (Casual Loop Diagram).
-
-A modell 3 fő elemből áll.
-Ezek:
+Fő Jellemzői:
 
 \begin{itemize}
-	\item készletek
-	\item  áramlások
-	\item  késések
+	\item minimális az adatszükséglet,
+	\item  struktúrára és stratégiára koncentrál,
+	\item  holisztikus megközelítés, alrendszerekkel integrálva,
+	\item biztosítja a vállalati stratégia rendszerbe épülését visszaható burok által.
 \end{itemize}
 
+A hurok diagram a jellemző ábrázolási formája, más néven CLD (\textit{Casual Loop Diagram}).
+
+A modell 3 fő elemből áll, úgy mint
+\begin{itemize}
+	\item készletek,
+	\item áramlások,
+	\item késések.
+\end{itemize}
 
 Ezek kölcsönösen kapcsolatban állnak, hatnak egymásra, illetve változnak.
 A kimeneti érték a visszaható hurok sűrűségétől, illetve a hatás sebességétől függ. 
 Gyakran alkalmazzák ezt a diagramot döntéshozáshoz, mert könnyen olvasható.
 
-Alkotásakor először az egyes elemek között fennálló kapcsolatokat kell meghatározni. Majd ezekhez függvényeket, numerikus értékeket rendelni. Majd addig kell a futtatást pontosítani, amíg az érték nem tükrözi a valóságot. 
-
-
+Alkotásakor először az egyes elemek között fennálló kapcsolatokat kell meghatározni. Majd ezekhez függvényeket, numerikus értékeket rendelni. Majd addig kell a futtatást pontosítani, amíg az érték nem tükrözi a valóságot.
 
 \Section{DES Discrete Event Simulation (Eseményvezérelt DES)}
 
@@ -74,19 +66,14 @@ Most tekintsük át a logisztikai alkalmazását.
 A strukturális változásoknak a modellezéséhez fejlesztették ki ezt a platformot. Az ágens alapú modell az ellátási láncban lévő virtuális vállalatok hatását szimulálja. Lényege, hogy egymástól eltérő ágenseket elhelyezünk, amelyek a virtuális vállalatokat reprezentálják. Ezeknek a vállalatoknak a tevékenységét szintén egy ágens szimulálja. Ezek különböző termékeket állítanak elő. Az összes ágens a saját termékei koncentrál, de közben egymásra is hatással vannak. Fontos, hogy ezek a logisztikai folyamatok a valóságban is ágensekből állnak, például csomagoló, targonca kezelő. 
 
 
-\Section{Végeselem}
-
-
+\Section{Végeselem módszerek}
 
 A véges elem módszerekkel
 bonyolult feladatokat egyszerűsítünk le, ezt hálózásnak nevezzük \cite{veges1}. Ennek lényege, hogy az elemeket véges számú kisebb, egyszerűbb elemekre bontjuk, így több, de egyszerűbb számításokat kell elvégeznünk, a kevesebb, de bonyolultabb számítások helyett.
 
-
 A módszer elterjedésével megváltoztak a gyártási folyamatok. Ezeket a módszereket jellemzően mérnökök használják, mechanikai számítások elvégzéséhez, valamint mezőszimulációkhoz \cite{wiki}. Tipikus példa egy bonyolult alakú statikusan terhelt gépalkatrész feszültségi állapotának és alakváltozásának meghatározása. Ekkor az alkatrész modellt véges számú elemre bontják. Ilyenek a síkbeliek közül a háromszögek és a négyszögek, térbeliek közül pedig a hasábok és tetraéderek. A felosztást úgy érdemes csinálni, hogy ahol az eredmény kritikus lehet ott kisebb részekre osztani, máshol pedig nagyobb részekre. Az elemek a csomópontoknál csatlakoznak egymáshoz. 
 
-
 A véges elem módszert még nemlineáris feladatoknál is alkalmazni lehet. Például nemlineáris anyagtulajdonságok, nagy deformációk kezelése, szerkezeti stabilitási problémák. Hóvezetési problémák és kombinált hővezetési és szilárdsági problémák megoldására is használják a módszert. 
-
 
 A mágneses és elektrosztatikus problémákra is megfelelő a használata. Mostanában szivárgási és talajmechanikai vizsgálatokat is végeznek vele. 
 
